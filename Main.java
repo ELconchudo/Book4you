@@ -4,7 +4,7 @@ public class Main {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		registro a = new registro();
+		Login a = new Login();
 		
 	}
 
