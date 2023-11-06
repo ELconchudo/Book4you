@@ -8,7 +8,9 @@ import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.Statement;
-
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -223,10 +225,28 @@ public class Registro extends JFrame implements ActionListener {
 			this.dispose();
 		}
 
+	private static Connection conectarBaseDatos() {
+        Connection con = null;
+        System.out.println("Intentando conectarse a la base de datos");
+        try {
+            Class.forName("oracle.jdbc.driver.OracleDriver");
+            con = DriverManager.getConnection(URL, USER, PWD);
+        } catch (ClassNotFoundException e) {
+            System.out.println("No se ha encontrado el driver " + e);
+        } catch (SQLException e) {
+            System.out.println("Error en las credenciales o en la URL " + e);
+        }
+        System.out.println("Conectados a la base de datos");
+        return con;
+    }
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
+		if (e.getSource() == Registrarse) {
+			String sql = "INSERT INTO USUARIOS(DNI, USUARIO, CONTRASEÑA, CORREO, TELEFONO, CREDITOS)" + 
+			"VALUES('"+ textoCIF.getText() +"', '"+textousuario.getText()+"', '"+ textocontrasena.getText() +"','"+ textocorreo.getText() +"', '"+ textotelefono.getText() +"')";
+			// TODO Auto-generated method stub
+		}
 		
 	}
 }
