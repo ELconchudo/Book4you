@@ -28,7 +28,7 @@ public class Login extends JFrame implements ActionListener {
 	JTextField areadetexto = new JTextField("");
 	JTextField areadetexto2;
 	JLabel usuario;
-	JLabel contraseña;
+	JLabel contrasena;
 	JLabel Titulo;
 	
 	ImageIcon Logo = new ImageIcon("Imagenes/Logo3.png");
@@ -76,11 +76,11 @@ public Login() {
 		areadetexto.setBounds(515, 267, 120, 30);
 		this.getContentPane().add(areadetexto);
 		
-		contraseña = new JLabel("Contraseña");
-		contraseña.setFont(font3);
-		contraseña.setBounds(355, 354, 120, 20);
-		this.getContentPane().add(contraseña);
-		contraseña.setForeground(Color.BLACK);
+		contrasena = new JLabel("Contrasena");
+		contrasena.setFont(font3);
+		contrasena.setBounds(355, 354, 120, 20);
+		this.getContentPane().add(contrasena);
+		contrasena.setForeground(Color.BLACK);
 		
 		areadetexto2 = new JPasswordField();
 		areadetexto2.setBounds(515, 351, 120, 30);
