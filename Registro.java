@@ -1,4 +1,4 @@
-package proyecto;
+//package proyecto;
 
 import java.awt.Color;
 import java.awt.Component;

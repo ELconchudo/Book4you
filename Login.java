@@ -1,4 +1,5 @@
-package proyecto;
+//package proyecto;
+
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
@@ -27,9 +28,9 @@ public class Login extends JFrame implements ActionListener {
 	JButton Registrarse;
 	JLabel Titulo;
 	JLabel Usuario;
-	JLabel Contraseña;
+	JLabel Contrasena;
 	JTextField areaUsuario = new JTextField("");
-	JTextField areaContraseña;
+	JTextField areaContrasena;
 	
 	ImageIcon Logo = new ImageIcon("Imagenes/Logo3.png");
 	
@@ -78,16 +79,16 @@ public Login() {
 		this.getContentPane().add(areaUsuario);
 		
 		//CAMPOS CONTRASENYA
-		Contraseña = new JLabel("Contraseña");
-		Contraseña.setFont(font3);
-		Contraseña.setBounds(400, 354, 120, 20);
-		this.getContentPane().add(Contraseña);
-		Contraseña.setForeground(Color.BLACK);
+		Contrasena = new JLabel("Contrasena");
+		Contrasena.setFont(font3);
+		Contrasena.setBounds(400, 354, 120, 20);
+		this.getContentPane().add(Contrasena);
+		Contrasena.setForeground(Color.BLACK);
 		
-		areaContraseña = new JPasswordField();
-		areaContraseña.setBounds(550, 351, 120, 30);
-		this.getContentPane().add(areaContraseña);
-		areaContraseña.addActionListener(this);
+		areaContrasena = new JPasswordField();
+		areaContrasena.setBounds(550, 351, 120, 30);
+		this.getContentPane().add(areaContrasena);
+		areaContrasena.addActionListener(this);
 		
 		this.setVisible(true);
 }

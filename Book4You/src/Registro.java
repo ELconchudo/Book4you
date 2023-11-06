@@ -22,14 +22,14 @@ import javax.swing.border.Border;
 public class Registro extends JFrame implements ActionListener {
 	
 	JTextField textousuario = new JTextField("");
-	JTextField textocontraseña;
+	JTextField textocontrasena;
 	JTextField textocorreo = new JTextField("");
 	JTextField textotelefono = new JTextField("");
 	JTextField textoCIF = new JTextField("");
 	JTextField textodireccion = new JTextField("");
 	JTextField textoNumeroCuenta = new JTextField("");
 	JTextField textoClaveAcceso = new JTextField("");
-	JTextField textocontraseña2;
+	JTextField textocontrasena2;
 	
 	
 	String [] MetodoDePago = {"Tarjeta", "Paypal"};
@@ -40,8 +40,8 @@ public class Registro extends JFrame implements ActionListener {
 
 	
 	JLabel usuario;
-	JLabel contraseña;
-	JLabel contraseña2;
+	JLabel contrasena;
+	JLabel contrasena2;
 	JLabel repetir;
 	JLabel tituloregistro;
 	JLabel correo;
@@ -58,13 +58,13 @@ public class Registro extends JFrame implements ActionListener {
 	
 	
 	JLabel avisoNombre = new JLabel();
-	JLabel avisoContraseña = new JLabel();
+	JLabel avisoContrasena = new JLabel();
 	JLabel avisoRepetir = new JLabel();
 	JLabel avisoCorreo = new JLabel();
 	
 	private static final String USER = "22_23_KIKOANUNCIOS";
 	private static final String PWD = "1234";
-	// Si estáis desde casa, la url será oracle.ilerna.com y no 192.168.3.26
+	// Si estais desde casa, la url sera oracle.ilerna.com y no 192.168.3.26
 	private static final String URL = "jdbc:oracle:thin:@oracle.ilerna.com:1521:xe";
 	
 	
@@ -106,10 +106,10 @@ public class Registro extends JFrame implements ActionListener {
 		this.getContentPane().add(avisoNombre);
 		
 		
-		avisoContraseña.setFont(font1);
-		avisoContraseña.setBounds(730, 150, 199, 20);
-		avisoContraseña.setForeground(Color.RED);
-		this.getContentPane().add(avisoContraseña);
+		avisoContrasena.setFont(font1);
+		avisoContrasena.setBounds(730, 150, 199, 20);
+		avisoContrasena.setForeground(Color.RED);
+		this.getContentPane().add(avisoContrasena);
 		
 		avisoRepetir.setFont(font1);
 		avisoRepetir.setBounds(730, 200, 199, 20);
@@ -119,44 +119,33 @@ public class Registro extends JFrame implements ActionListener {
 		avisoCorreo.setFont(font1);
 		avisoCorreo.setBounds(730, 250, 199, 20);
 		avisoCorreo.setForeground(Color.RED);
-		this.getContentPane().add(avisoCorreo);
-		
-		
-		
-		
-		
-		
-		
-		
-		
+		this.getContentPane().add(avisoCorreo);	
 		
 		textousuario.setFont(font3);
 		textousuario.setBounds(562, 100, 141, 20);
 		this.getContentPane().add(textousuario);
 		
+		contrasena = new JLabel("Contrasena");
+		contrasena.setFont(font1);
+		contrasena.setBounds(270, 150, 120, 20);
+		this.getContentPane().add(contrasena);
+		contrasena.setForeground(Color.BLACK);
 		
+		textocontrasena = new JPasswordField();
+		textocontrasena.setBounds(562, 150, 141, 20);
+		this.getContentPane().add(textocontrasena);
+		textocontrasena.addActionListener(this);
 		
-		contraseña = new JLabel("Contraseña");
-		contraseña.setFont(font1);
-		contraseña.setBounds(270, 150, 120, 20);
-		this.getContentPane().add(contraseña);
-		contraseña.setForeground(Color.BLACK);
+		contrasena2 = new JLabel("Repetir contrasena");
+		contrasena2.setFont(font1);
+		contrasena2.setBounds(270, 200, 180, 20);
+		this.getContentPane().add(contrasena2);
+		contrasena2.setForeground(Color.BLACK);
 		
-		textocontraseña = new JPasswordField();
-		textocontraseña.setBounds(562, 150, 141, 20);
-		this.getContentPane().add(textocontraseña);
-		textocontraseña.addActionListener(this);
-		
-		contraseña2 = new JLabel("Repetir contraseña");
-		contraseña2.setFont(font1);
-		contraseña2.setBounds(270, 200, 180, 20);
-		this.getContentPane().add(contraseña2);
-		contraseña2.setForeground(Color.BLACK);
-		
-		textocontraseña2 = new JPasswordField();
-		textocontraseña2.setBounds(562, 200, 141, 20);
-		this.getContentPane().add(textocontraseña2);
-		textocontraseña2.addActionListener(this);
+		textocontrasena2 = new JPasswordField();
+		textocontrasena2.setBounds(562, 200, 141, 20);
+		this.getContentPane().add(textocontrasena2);
+		textocontrasena2.addActionListener(this);
 		
 		
 		Registrarse = new JButton("Registrarse");
@@ -175,7 +164,7 @@ public class Registro extends JFrame implements ActionListener {
 		Volver.setBackground(new Color(242, 242, 242));
 		Volver.setBorder(new RoundedBorder(22));
 		
-		correo = new JLabel("Correo electrónico");
+		correo = new JLabel("Correo electronico");
 		correo.setFont(font1);
 		correo.setBounds(270, 250, 199, 20);
 		this.getContentPane().add(correo);
@@ -186,7 +175,7 @@ public class Registro extends JFrame implements ActionListener {
 		textocorreo.setBounds(562, 250, 141, 20);
 		this.getContentPane().add(textocorreo);
 		
-		telefono = new JLabel("Teléfono");
+		telefono = new JLabel("Telefono");
 		telefono.setFont(font1);
 		telefono.setBounds(270, 300, 120, 20);
 		this.getContentPane().add(telefono);
@@ -206,7 +195,7 @@ public class Registro extends JFrame implements ActionListener {
 		textoCIF.setBounds(562, 350, 141, 20);
 		this.getContentPane().add(textoCIF);
 		
-		direccion = new JLabel("Dirección residencial");
+		direccion = new JLabel("Direccion residencial");
 		direccion.setFont(font1);
 		direccion.setBounds(270, 400, 180, 20);
 		this.getContentPane().add(direccion);
@@ -216,7 +205,7 @@ public class Registro extends JFrame implements ActionListener {
 		textodireccion.setBounds(562, 400, 141, 20);
 		this.getContentPane().add(textodireccion);
 		
-		metodo = new JLabel("Método de pago");
+		metodo = new JLabel("Metodo de pago");
 		metodo.setFont(font1);
 		metodo.setBounds(270, 450, 180, 20);
 		this.getContentPane().add(metodo);
@@ -226,7 +215,7 @@ public class Registro extends JFrame implements ActionListener {
 		ListaMetodo.setBounds(562, 450, 141, 20);
 		this.getContentPane().add(ListaMetodo);
 		
-		genero = new JLabel("Género");
+		genero = new JLabel("Genero");
 		genero.setFont(font1);
 		genero.setBounds(270, 500, 180, 20);
 		this.getContentPane().add(genero);
@@ -248,18 +237,18 @@ public class Registro extends JFrame implements ActionListener {
 		
 		if(textousuario.getText().isEmpty()) {
 			JOptionPane.showMessageDialog(null, "El nombre de usuario es obligatorio");
-		} else if (textocontraseña.getText().isEmpty()) {
-		JOptionPane.showMessageDialog(null, "La contraseña es obligatoria");
-		}else if(textocontraseña2.getText().isEmpty()) {
-			JOptionPane.showMessageDialog(null, "Repetir la contraseña es obligatorio");
+		} else if (textocontrasena.getText().isEmpty()) {
+		JOptionPane.showMessageDialog(null, "La contrasena es obligatoria");
+		}else if(textocontrasena2.getText().isEmpty()) {
+			JOptionPane.showMessageDialog(null, "Repetir la contrasena es obligatorio");
 		} else if(textocorreo.getText().isEmpty()) {
-			JOptionPane.showMessageDialog(null, "El correo electrónico es obligatorio");
+			JOptionPane.showMessageDialog(null, "El correo electronico es obligatorio");
 		} else if(textotelefono.getText().isEmpty()) {
-			JOptionPane.showMessageDialog(null, "El número de teléfono es obligatorio");
+			JOptionPane.showMessageDialog(null, "El numero de telefono es obligatorio");
 		} else if (textoCIF.getText().isEmpty()) {
 			JOptionPane.showMessageDialog(null, "El CIF/DNI es obligatorio");
 		} else if (textodireccion.getText().isEmpty()) {
-			JOptionPane.showMessageDialog(null, "La dirección residencial es obligatoria");
+			JOptionPane.showMessageDialog(null, "La direccion residencial es obligatoria");
 		} else {
 		Registrarse.setEnabled(true);
 			

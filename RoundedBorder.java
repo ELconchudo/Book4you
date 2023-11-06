@@ -1,4 +1,4 @@
-package proyecto;
+//package proyecto;
 
 import java.awt.Component;
 import java.awt.Graphics;
