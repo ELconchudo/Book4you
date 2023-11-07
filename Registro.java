@@ -246,12 +246,14 @@ public class Registro extends JFrame implements ActionListener {
 			String sql = "INSERT INTO USUARIOS(DNI, USUARIO, CONTRASEÑA, CORREO, TELEFONO, CREDITOS)" + 
 			"VALUES('"+ textoCIF.getText() +"', '"+textousuario.getText()+"', '"+ textocontrasena.getText() +"','"+ textocorreo.getText() +"', '"+ textotelefono.getText() +"')";
 			try {
+				Connection con = conectarBaseDatos();
 				java.sql.Statement st = con.createStatement();
 				st.execute(sql);
 
 				JOptionPane.showMessageDialog(null, "Registrado");
 				System.out.println("Persona registrada correctamente");
-			} catch (Exception e) {
+			} catch (Exception ex) {
+				System.out.println(ex);
 				// TODO: handle exception
 			}			
 			// TODO Auto-generated method stub
