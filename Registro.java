@@ -243,7 +243,8 @@ public class Registro extends JFrame implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == Registrarse) {
-			String sql = "INSERT INTO USUARIOS(DNI, USUARIO, CONTRASEÑA, CORREO, TELEFONO, CREDITOS)" + 
+			System.out.println("Hi :D");
+			String sql = "INSERT INTO USUARIOS(DNI, USUARIO, CONTRASEÑA, CORREO, TELEFONO)" + 
 			"VALUES('"+ textoCIF.getText() +"', '"+textousuario.getText()+"', '"+ textocontrasena.getText() +"','"+ textocorreo.getText() +"', '"+ textotelefono.getText() +"')";
 			try {
 				Connection con = conectarBaseDatos();

@@ -7,12 +7,13 @@ import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.awt.Font;
-import javax.swing.JPasswordField;
-import javax.swing.JTextField;
+
 import javax.swing.border.Border;
 import javax.swing.plaf.nimbus.NimbusLookAndFeel;
 
@@ -25,13 +26,19 @@ public class Login extends JFrame implements ActionListener {
 	
 	JButton Login;
 	JButton Registrarse;
-	JTextField areadetexto = new JTextField("");
-	JTextField areadetexto2;
+	JTextField areaUsuario = new JTextField("");
+	JTextField areaContrasena;
 	JLabel usuario;
 	JLabel contrasena;
 	JLabel Titulo;
 	
 	ImageIcon Logo = new ImageIcon("Imagenes/Logo3.png");
+
+	private static final String USER = "DW2_2324_BOOK4U_KIA_CO";
+	private static final String PWD = "AKIA_CO";
+	// Si estais desde casa, la url sera oracle.ilerna.com y no 192.168.3.26
+	private static final String URL = "jdbc:oracle:thin:@192.168.3.26:1521:xe";
+	private String[] sqluser = new String[7];
 	
 public Login() {
 		
@@ -65,16 +72,16 @@ public Login() {
 		Registrarse.setBackground(new Color(242, 242, 242));
 		Registrarse.setBorder(new RoundedBorder(22));
 		
-		usuario = new JLabel("Usuario");
+		usuario = new JLabel("DNI");
 		Font font1 = new Font("Dialog", Font.PLAIN ,20);
 		usuario.setFont(font3);
 		usuario.setBounds(387, 270, 110, 20);
 		usuario.setForeground(Color.BLACK);
 		this.getContentPane().add(usuario);
 		
-		areadetexto.setFont(font1);
-		areadetexto.setBounds(515, 267, 120, 30);
-		this.getContentPane().add(areadetexto);
+		areaUsuario.setFont(font1);
+		areaUsuario.setBounds(515, 267, 120, 30);
+		this.getContentPane().add(areaUsuario);
 		
 		contrasena = new JLabel("Contrasena");
 		contrasena.setFont(font3);
@@ -82,19 +89,69 @@ public Login() {
 		this.getContentPane().add(contrasena);
 		contrasena.setForeground(Color.BLACK);
 		
-		areadetexto2 = new JPasswordField();
-		areadetexto2.setBounds(515, 351, 120, 30);
-		this.getContentPane().add(areadetexto2);
-		areadetexto2.addActionListener(this);
+		areaContrasena = new JPasswordField();
+		areaContrasena.setBounds(515, 351, 120, 30);
+		this.getContentPane().add(areaContrasena);
+		areaContrasena.addActionListener(this);
 		
 		this.setVisible(true);
 }
+		private static Connection conectarBaseDatos() {
+		Connection con = null;
+        System.out.println("Intentando conectarse a la base de datos");
+        try {
+            Class.forName("oracle.jdbc.driver.OracleDriver");
+            con = DriverManager.getConnection(URL, USER, PWD);
+        } catch (ClassNotFoundException e) {
+            System.out.println("No se ha encontrado el driver " + e);
+        } catch (SQLException e) {
+            System.out.println("Error en las credenciales o en la URL " + e);
+        }
+        System.out.println("Conectados a la base de datos");
+        return con;
+    }
+
+	private void ulogin(Connection con) {
+		String sql = "SELECT u.* FROM USUARIOS u";
+		try {
+			Statement st = con.createStatement();
+			ResultSet rs = st.executeQuery(sql);
+			if (rs.isBeforeFirst()) {
+				while (rs.next()) {
+					sqluser[0] = rs.getString("USERID");
+					sqluser[1] = rs.getString("DNI");
+					sqluser[2] = rs.getString("USUARIO");
+					sqluser[3] = rs.getString("CONTRASEÑA");
+					sqluser[4] = rs.getString("CORREO");
+					sqluser[5] = rs.getString("TELEFONO");
+					sqluser[6] = rs.getString("CREDITOS");
+					if (areaUsuario.getText().equals(sqluser[1]) && areaContrasena.getText().equals(sqluser[3])) {
+						System.out.println("Habia un usuario");
+						JOptionPane.showMessageDialog(null, "Bienvenido "+ sqluser[1]);
+					} else {
+						System.out.println("No he encontrado nada");
+					}
+				}
+			} else {
+				System.out.println("No he encontrado nada");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		
+		if (e.getSource() == Registrarse) {
+			Registro r = new Registro();
+			this.setVisible(false);
+		} else if (e.getSource() == Login) {
+				Connection con = conectarBaseDatos();
+				System.out.println("Hola");
+				ulogin(con);
+			}	
+		}
 	}
 	
-
-}

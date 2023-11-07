@@ -98,7 +98,6 @@ public Login() {
 		// TODO Auto-generated method stub
 		if(e.getSource()== Registrarse){
 			Registro r = new Registro();
-			r.setVisible(true);
 			this.dispose();
 		
 	}

@@ -62,10 +62,10 @@ public class Registro extends JFrame implements ActionListener {
 	JLabel avisoRepetir = new JLabel();
 	JLabel avisoCorreo = new JLabel();
 	
-	private static final String USER = "22_23_KIKOANUNCIOS";
-	private static final String PWD = "1234";
+	private static final String USER = "DW2_2324_BOOK4U_KIA_CO";
+	private static final String PWD = "AKIA_CO";
 	// Si estais desde casa, la url sera oracle.ilerna.com y no 192.168.3.26
-	private static final String URL = "jdbc:oracle:thin:@oracle.ilerna.com:1521:xe";
+	private static final String URL = "jdbc:oracle:thin:@192.168.3.26:1521:xe";
 	
 	
 	
@@ -76,6 +76,7 @@ public class Registro extends JFrame implements ActionListener {
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.getContentPane().setLayout(null);
 		this.getContentPane().setBackground(new Color(242, 242, 242));
+		this.getContentPane().setLocation(0,0);
 		
 		
 		tituloregistro = new JLabel("Inserte sus datos para registrarse");
@@ -258,10 +259,40 @@ public class Registro extends JFrame implements ActionListener {
 		}
 	}
 
+	private static Connection conectarBaseDatos() {
+		Connection con = null;
+        System.out.println("Intentando conectarse a la base de datos");
+        try {
+            Class.forName("oracle.jdbc.driver.OracleDriver");
+            con = DriverManager.getConnection(URL, USER, PWD);
+        } catch (ClassNotFoundException e) {
+            System.out.println("No se ha encontrado el driver " + e);
+        } catch (SQLException e) {
+            System.out.println("Error en las credenciales o en la URL " + e);
+        }
+        System.out.println("Conectados a la base de datos");
+        return con;
+    }
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
+		if (e.getSource() == Registrarse) {
+			System.out.println("Hi :D");
+			String sql = "INSERT INTO USUARIOS(DNI, USUARIO, CONTRASEÑA, CORREO, TELEFONO)" + 
+			"VALUES('"+ textoCIF.getText() +"', '"+textousuario.getText()+"', '"+ textocontrasena.getText() +"','"+ textocorreo.getText() +"', '"+ textotelefono.getText() +"')";
+			try {
+				Connection con = conectarBaseDatos();
+				java.sql.Statement st = con.createStatement();
+				st.execute(sql);
+
+				JOptionPane.showMessageDialog(null, "Registrado");
+				System.out.println("Persona registrada correctamente");
+			} catch (Exception ex) {
+				System.out.println(ex);
+				// TODO: handle exception
+			}			
+			// TODO Auto-generated method stub
+		}
 		
 	}
 }
