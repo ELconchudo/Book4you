@@ -96,7 +96,7 @@ public Login() {
 		
 		this.setVisible(true);
 }
-		private static Connection conectarBaseDatos() {
+	private static Connection conectarBaseDatos() {
 		Connection con = null;
         System.out.println("Intentando conectarse a la base de datos");
         try {
