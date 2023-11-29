@@ -64,7 +64,7 @@ public class MisReservas extends JFrame implements ActionListener {
 
        
         nueva = new JButton("Hacer nueva reserva");
-		nueva.setBounds(350, 450, 190, 30);
+		nueva.setBounds(300, 500, 190, 30);
 		this.getContentPane().add(nueva);
 		nueva.addActionListener(this);
 		nueva.setForeground(Color.BLACK);
@@ -72,7 +72,7 @@ public class MisReservas extends JFrame implements ActionListener {
 		nueva.setBorder(new RoundedBorder(22));
 
         cancelar = new JButton("Cancelar reserva");
-		cancelar.setBounds(560, 450, 170, 25);
+		cancelar.setBounds(530, 500, 170, 30);
 		this.getContentPane().add(cancelar);
 		cancelar.addActionListener(this);
 		cancelar.setForeground(Color.BLACK);
@@ -80,7 +80,7 @@ public class MisReservas extends JFrame implements ActionListener {
 		cancelar.setBorder(new RoundedBorder(22));
 
         modificar = new JButton("Modificar reserva");
-		modificar.setBounds(720, 450, 113, 25);
+		modificar.setBounds(740, 500, 170, 30);
 		this.getContentPane().add(modificar);
 		modificar.addActionListener(this);
 		modificar.setForeground(Color.BLACK);
