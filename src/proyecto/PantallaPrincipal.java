@@ -172,7 +172,11 @@ public class PantallaPrincipal extends JFrame implements ActionListener{
 		panelLateral.setBackground(new Color(173,235,173));
 		this.getContentPane().add(panelLateral);
 		panelLateral.setVisible(true);
+
+		
 	  	
+
+
 	    this.setVisible(true);
 		
 	    		
