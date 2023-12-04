@@ -49,6 +49,7 @@ public class PantallaPrincipal extends JFrame implements ActionListener{
 	ImageIcon icono =  new ImageIcon("Imagenes/volver.png");
 	ImageIcon menuM =  new ImageIcon("Imagenes/IconoMenu.png");
 	ImageIcon volver =  new ImageIcon("Imagenes/volver.png");
+	ImageIcon BlackCoin = new ImageIcon("Imagenes/BlackCoin.png");
 	
 	/* 
 	private static final String USER = "22_23_KIKOANUNCIOS";
@@ -72,30 +73,39 @@ public class PantallaPrincipal extends JFrame implements ActionListener{
 		Font fuente1 = new Font("Dialog", Font.PLAIN, 14);
 		Font fuente2 = new Font("Dialog", Font.PLAIN, 20);
 		Font fuente3 = new Font("Dialog", Font.BOLD, 50);
+		Font fuente4 = new Font("Dialog", Font.BOLD, 32);
 		
 		titulo = new JLabel("Bienvenido " + nombreUsuario);
 		titulo.setFont(fuente3);
 		titulo.setForeground(Color.black);
-		titulo.setBounds(250, 75, 1000, 50);
+		titulo.setBounds(250, 60, 1000, 50);
 		this.getContentPane().add(titulo);
 		
 		textoBienvenida = new JLabel("Esta es la aplicacion Book4You");
 		textoBienvenida.setFont(fuente2);
 		textoBienvenida.setForeground(Color.black);
-		textoBienvenida.setBounds(250, 150, 1000, 50);
+		textoBienvenida.setBounds(250, 130, 1000, 50);
 		this.getContentPane().add(textoBienvenida);
 		
 	    textodeabajo = new JLabel("Aqui podras gestionar tus reservas");
-	    textodeabajo.setBounds(250, 200, 1200, 50);
+	    textodeabajo.setBounds(250, 180, 1200, 50);
 	    textodeabajo.setFont(fuente2);
 	    textodeabajo.setForeground(Color.black);
 	    this.getContentPane().add(textodeabajo);
 	    
-		label1 = new JLabel("Tienes " + creditos + " creditos.");
+		//CREDITOS
+		label1 = new JLabel(creditos + "");
 		label1.setForeground(Color.BLACK);
-		label1.setBounds(250, 50, 430, 50);
+		label1.setFont(fuente4);
+		label1.setBounds(950, 60, 50, 50);
 		label1.setVisible(true);
 		this.add(label1);
+
+		logo = new JLabel();
+		logo.setIcon(new ImageIcon("Imagenes/BlackCoin.png"));
+		logo.setBounds(970,60,50,50);
+		this.add(logo);
+
 		
 		
 		//IMATGE D'USUARI
