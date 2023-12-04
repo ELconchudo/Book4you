@@ -35,6 +35,10 @@ public class MisReservas extends JFrame implements ActionListener {
 	JLabel logo;
 	JLabel titulo;
 	JLabel titulo2;
+	JLabel ejemplo;
+	JLabel ejemplo2;
+	JLabel ejemplo3;
+	JLabel label1;
 	JPanel panelLateral;
 	JButton botonMenu;
 	JButton botonMenu2;
@@ -45,6 +49,8 @@ public class MisReservas extends JFrame implements ActionListener {
     JButton cancelar;
     JButton modificar;
 
+	String nombreUsuario;
+	int creditos;
 	String[] FullUsuario = new String[7];
 
     ImageIcon icono =  new ImageIcon("Imagenes/volver.png");
@@ -57,6 +63,8 @@ public class MisReservas extends JFrame implements ActionListener {
 
 		FullUsuario = sqluser;
 
+		this.creditos = Integer.parseInt(sqluser[6]);
+
         this.setBounds(300, 130, 1080, 700);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.getContentPane().setLayout(null);
@@ -66,7 +74,43 @@ public class MisReservas extends JFrame implements ActionListener {
         Font fuente1 = new Font("Dialog", Font.PLAIN, 14);
 		Font fuente2 = new Font("Dialog", Font.PLAIN, 20);
 		Font fuente3 = new Font("Dialog", Font.BOLD, 50);
+		Font fuente4 = new Font("Dialog", Font.BOLD, 27);
+		
+		titulo = new JLabel("Mis reservas");
+		titulo.setFont(fuente3);
+		titulo.setForeground(Color.black);
+		titulo.setBounds(450, 60, 1000, 60);
+		this.getContentPane().add(titulo);
 
+		ejemplo = new JLabel("Reserva de ejemplo");
+		ejemplo.setFont(fuente4);
+		ejemplo.setForeground(Color.black);
+		ejemplo.setBounds(470, 175, 1000, 60);
+		this.getContentPane().add(ejemplo);
+
+		ejemplo2 = new JLabel("Reserva de ejemplo");
+		ejemplo2.setFont(fuente4);
+		ejemplo2.setForeground(Color.black);
+		ejemplo2.setBounds(470, 265, 1000, 60);
+		this.getContentPane().add(ejemplo2);
+
+		ejemplo3 = new JLabel("Reserva de ejemplo");
+		ejemplo3.setFont(fuente4);
+		ejemplo3.setForeground(Color.black);
+		ejemplo3.setBounds(470, 355, 1000, 60);
+		this.getContentPane().add(ejemplo3);
+
+		//CREDITOS
+		label1 = new JLabel(creditos + "");
+		label1.setForeground(Color.BLACK);
+		label1.setFont(fuente4);
+		label1.setBounds(950, 60, 50, 50);
+		label1.setVisible(true);
+		this.add(label1);
+		logo = new JLabel();
+		logo.setIcon(new ImageIcon("Imagenes/BlackCoin.png"));
+		logo.setBounds(970,60,50,50);
+		this.add(logo);
 
        
         nueva = new JButton("Hacer nueva reserva");
