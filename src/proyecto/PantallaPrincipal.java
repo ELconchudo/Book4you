@@ -32,6 +32,9 @@ public class PantallaPrincipal extends JFrame implements ActionListener{
 	JButton botonUsuario;
 	JButton botonReservas;
 	JButton botonVolver;
+	JButton botonComprar;
+
+	JPanel comprar = new JPanel();
 	
 	
 	JLabel label1;
@@ -106,7 +109,25 @@ public class PantallaPrincipal extends JFrame implements ActionListener{
 		logo.setBounds(970,60,50,50);
 		this.add(logo);
 
+
+		//Boton Comprar
+		botonComprar = new JButton();
+		botonComprar.setBounds(925,120,100,25);
+		botonComprar.setVisible(true);
+		this.getContentPane().add(botonComprar);
+		botonComprar.setText("Comprar");
+		botonComprar.addActionListener(this);
+
 		
+		//Panel
+		comprar.add(new JLabel("Numero Tarjeta:"));
+		comprar.add(new JTextField(16));
+		comprar.add(new JLabel("Fecha:"));
+		comprar.add(new JTextField(8));
+		comprar.add(new JLabel("CCV:"));
+		comprar.add(new JTextField(3));
+		
+
 		
 		//IMATGE D'USUARI
 		logo = new JLabel();
@@ -241,15 +262,17 @@ public class PantallaPrincipal extends JFrame implements ActionListener{
 			Login l = new Login();
 			l.setVisible(true);
 			this.dispose();
-			} else if(e.getSource() == botonMenu2) {
-				botonMenu.setVisible(true);
-				botonUsuario.setVisible(false);
-				botonReservas.setVisible(false);
-			} else if (e.getSource() == botonReservas) {
-				MisReservas m = new MisReservas(FullUsuario);
-				m.setVisible(true);
-				this.dispose();
-				}
+		} else if(e.getSource() == botonMenu2) {
+			botonMenu.setVisible(true);
+			botonUsuario.setVisible(false);
+			botonReservas.setVisible(false);
+		} else if (e.getSource() == botonReservas) {
+			MisReservas m = new MisReservas(FullUsuario);
+			m.setVisible(true);
+			this.dispose();
+		} else if (e.getSource() == botonComprar) {
+			JOptionPane.showConfirmDialog(rootPane, comprar);
+		}
 		
 	}
 }
