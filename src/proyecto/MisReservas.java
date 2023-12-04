@@ -38,8 +38,8 @@ public class MisReservas extends JFrame implements ActionListener {
 	JPanel panelLateral;
 	JButton botonMenu;
 	JButton botonMenu2;
-	JButton botonInicio;
-	JButton botonAnuncios;
+	JButton botonUsuario;
+	JButton botonReservas;
 	JButton botonVolver;
     JButton nueva;
     JButton cancelar;
@@ -48,6 +48,8 @@ public class MisReservas extends JFrame implements ActionListener {
     ImageIcon icono =  new ImageIcon("Imagenes/volver.png");
 	ImageIcon menuM =  new ImageIcon("Imagenes/IconoMenu.png");
 	ImageIcon volver =  new ImageIcon("Imagenes/volver.png");
+
+	private String[] sqluser = new String[7];
 
     public MisReservas() {
 
@@ -126,25 +128,25 @@ public class MisReservas extends JFrame implements ActionListener {
 		
 
 	    
-	    botonInicio = new JButton("USUARIO");
-	    botonInicio.setBounds(15, 80, 145, 45);
-	    botonInicio.setFont(fuente1);
-	    botonInicio.setBorder(bordeBoton);
-	    botonInicio.addActionListener(this);
-	    botonInicio.setVisible(false);
-	    botonInicio.setBorder(new RoundedBorder(30)); 
-	    botonInicio.setContentAreaFilled(false);
-		this.add(botonInicio);
+	    botonUsuario = new JButton("USUARIO");
+	    botonUsuario.setBounds(15, 80, 145, 45);
+	    botonUsuario.setFont(fuente1);
+	    botonUsuario.setBorder(bordeBoton);
+	    botonUsuario.addActionListener(this);
+	    botonUsuario.setVisible(false);
+	    botonUsuario.setBorder(new RoundedBorder(30)); 
+	    botonUsuario.setContentAreaFilled(false);
+		this.add(botonUsuario);
 	    
-	    botonAnuncios = new JButton("RESERVAS");
-	    botonAnuncios.setBounds(15, 135, 145, 45);
-	    botonAnuncios.setFont(fuente1);
-	    botonAnuncios.setBorder(bordeBoton);
-	    botonAnuncios.addActionListener(this);
-	    botonAnuncios.setVisible(false);
-	    botonAnuncios.setBorder(new RoundedBorder(30)); 
-	    botonAnuncios.setContentAreaFilled(false);
-		this.add(botonAnuncios);
+	    botonReservas = new JButton("RESERVAS");
+	    botonReservas.setBounds(15, 135, 145, 45);
+	    botonReservas.setFont(fuente1);
+	    botonReservas.setBorder(bordeBoton);
+	    botonReservas.addActionListener(this);
+	    botonReservas.setVisible(false);
+	    botonReservas.setBorder(new RoundedBorder(30)); 
+	    botonReservas.setContentAreaFilled(false);
+		this.add(botonReservas);
 	    
 	  	panelLateral = new JPanel();
 		panelLateral.setBounds(0, 0, 170, 661);
@@ -163,17 +165,17 @@ public class MisReservas extends JFrame implements ActionListener {
         if(e.getSource() == botonMenu) {
 			botonMenu.setVisible(false);
 			botonMenu2.setVisible(true);
-			botonInicio.setVisible(true);
-			botonAnuncios.setVisible(true);
+			botonUsuario.setVisible(true);
+			botonReservas.setVisible(true);
 			
 		} else if (e.getSource() == botonVolver) {
-			Login l = new Login();
-			l.setVisible(true);
+			PantallaPrincipal pp = new PantallaPrincipal(sqluser[2], Integer.parseInt(sqluser[6]));
+			pp.setVisible(true);
 			this.dispose();
 			} else if(e.getSource() == botonMenu2) {
 				botonMenu.setVisible(true);
-				botonInicio.setVisible(false);
-				botonAnuncios.setVisible(false);
+				botonUsuario.setVisible(false);
+				botonReservas.setVisible(false);
 			}
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'actionPerformed'");
