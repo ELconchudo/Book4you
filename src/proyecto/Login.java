@@ -137,7 +137,7 @@ public Login() {
 						System.out.println("Habia un usuario");
 						JOptionPane.showMessageDialog(null, "Bienvenido "+ sqluser[1]);
 						this.setVisible(false);
-						PantallaPrincipal pp = new PantallaPrincipal(sqluser[2], Integer.parseInt(sqluser[6]));
+						PantallaPrincipal pp = new PantallaPrincipal(sqluser);
 					} else {
 						System.out.println("No he encontrado nada");
 					}

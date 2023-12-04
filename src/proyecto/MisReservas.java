@@ -45,13 +45,17 @@ public class MisReservas extends JFrame implements ActionListener {
     JButton cancelar;
     JButton modificar;
 
+	String[] FullUsuario = new String[7];
+
     ImageIcon icono =  new ImageIcon("Imagenes/volver.png");
 	ImageIcon menuM =  new ImageIcon("Imagenes/IconoMenu.png");
 	ImageIcon volver =  new ImageIcon("Imagenes/volver.png");
 
 	private String[] sqluser = new String[7];
 
-    public MisReservas() {
+    public MisReservas(String[] sqluser) {
+
+		FullUsuario = sqluser;
 
         this.setBounds(300, 130, 1080, 700);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -169,7 +173,7 @@ public class MisReservas extends JFrame implements ActionListener {
 			botonReservas.setVisible(true);
 			
 		} else if (e.getSource() == botonVolver) {
-			PantallaPrincipal pp = new PantallaPrincipal(sqluser[2], Integer.parseInt(sqluser[6]));
+			PantallaPrincipal pp = new PantallaPrincipal(FullUsuario);
 			pp.setVisible(true);
 			this.dispose();
 			} else if(e.getSource() == botonMenu2) {

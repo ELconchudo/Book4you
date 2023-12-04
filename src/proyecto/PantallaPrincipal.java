@@ -44,6 +44,7 @@ public class PantallaPrincipal extends JFrame implements ActionListener{
 	
 	String nombreUsuario;
 	int creditos;
+	String[] FullUsuario = new String[7];
 	
 	ImageIcon icono =  new ImageIcon("Imagenes/volver.png");
 	ImageIcon menuM =  new ImageIcon("Imagenes/IconoMenu.png");
@@ -57,9 +58,11 @@ public class PantallaPrincipal extends JFrame implements ActionListener{
 	Connection con = conectarBaseDatos();
 	 */
 	
-	public PantallaPrincipal(String nombreUsuario, int creditos) {
+	public PantallaPrincipal(String[] sqluser) {
 		
-		this.nombreUsuario = nombreUsuario;
+		this.nombreUsuario = sqluser[2];
+		this.creditos = Integer.parseInt(sqluser[6]);
+		FullUsuario = sqluser;
 		
 		this.setBounds(300, 130, 1080, 700);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -233,7 +236,7 @@ public class PantallaPrincipal extends JFrame implements ActionListener{
 				botonUsuario.setVisible(false);
 				botonReservas.setVisible(false);
 			} else if (e.getSource() == botonReservas) {
-				MisReservas m = new MisReservas();
+				MisReservas m = new MisReservas(FullUsuario);
 				m.setVisible(true);
 				this.dispose();
 				}
