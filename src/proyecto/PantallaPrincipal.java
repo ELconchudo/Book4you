@@ -270,6 +270,10 @@ public class PantallaPrincipal extends JFrame implements ActionListener{
 			MisReservas m = new MisReservas(FullUsuario);
 			m.setVisible(true);
 			this.dispose();
+		}else if(e.getSource() == botonUsuario){
+			PantallaUsuario m = new PantallaUsuario(FullUsuario);
+			m.setVisible(true);
+			this.dispose();
 		} else if (e.getSource() == botonComprar) {
 			JOptionPane.showConfirmDialog(rootPane, comprar);
 		}
