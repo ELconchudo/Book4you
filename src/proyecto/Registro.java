@@ -13,6 +13,9 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 */
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -65,7 +68,7 @@ public class Registro extends JFrame implements ActionListener {
 	private static final String USER = "DW2_2324_BOOK4U_KIA_CO";
 	private static final String PWD = "AKIA_CO";
 	// Si estais desde casa, la url sera oracle.ilerna.com y no 192.168.3.26
-	private static final String URL = "jdbc:oracle:thin:@oracle.ilerna.com:1521:xe";
+	private static final String URL = "jdbc:oracle:thin:@192.168.3.26:1521:xe";
 	
 	
 	public Registro () {
@@ -227,7 +230,7 @@ public class Registro extends JFrame implements ActionListener {
 			this.dispose();
 		}
 
-	/*private static Connection conectarBaseDatos() {
+	private static Connection conectarBaseDatos() {
         Connection con = null;
         System.out.println("Intentando conectarse a la base de datos");
         try {
@@ -241,30 +244,24 @@ public class Registro extends JFrame implements ActionListener {
         System.out.println("Conectados a la base de datos");
         return con;
     }
-	*/
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == Registrarse) {
 			
-			String sql = "INSERT INTO USUARIOS(DNI, USUARIO, CONTRASEÑA, CORREO, TELEFONO, CREDITOS)" + 
-			"VALUES('"+ textoCIF.getText() +"', '"+textousuario.getText()+"', '"+ textocontrasena.getText() +"','"+ textocorreo.getText() +"', '"+ textotelefono.getText() +"')";
-			/*
+			String sql = "INSERT INTO USUARIOS(DNI, USUARIO, CONTRASEÃ‘A, CORREO, TELEFONO, CREDITOS)" + 
+			"VALUES('"+ textoCIF.getText() +"', '"+textousuario.getText()+"', '"+ textocontrasena.getText() +"','"+ textocorreo.getText() +"', '"+ textotelefono.getText() +"', '"+ 0 +"')";
+			try {
 				Connection con = conectarBaseDatos();
 				java.sql.Statement st = con.createStatement();
 				st.execute(sql);
-
-				JOptionPane.showMessageDialog(null, "Registrado");
-				System.out.println("Persona registrada correctamente");
 			} catch (Exception ex) {
 				System.out.println(ex);
-				// TODO: handle exception
-			}			
-			// TODO Auto-generated method stub
-			 * 
-			 */
-			Login r = new Login();
-			this.dispose();
+			}
+				JOptionPane.showMessageDialog(null, "Registrado");
+				System.out.println("Persona registrada correctamente");		
+				Login r = new Login();
+				this.dispose();
 			
 		} else if(e.getSource() == Volver) {
 			Login r = new Login();
