@@ -77,21 +77,22 @@ public class PantallaPrincipal extends JFrame implements ActionListener{
 		Font fuente2 = new Font("Dialog", Font.PLAIN, 20);
 		Font fuente3 = new Font("Dialog", Font.BOLD, 50);
 		Font fuente4 = new Font("Dialog", Font.BOLD, 32);
+		Font fuente5 = new Font("Dialog", Font.BOLD, 15);
 		
 		titulo = new JLabel("Bienvenido " + nombreUsuario);
 		titulo.setFont(fuente3);
 		titulo.setForeground(Color.black);
-		titulo.setBounds(250, 60, 1000, 50);
+		titulo.setBounds(250, 60, 1000, 80);
 		this.getContentPane().add(titulo);
 		
 		textoBienvenida = new JLabel("Esta es la aplicacion Book4You");
 		textoBienvenida.setFont(fuente2);
 		textoBienvenida.setForeground(Color.black);
-		textoBienvenida.setBounds(250, 130, 1000, 50);
+		textoBienvenida.setBounds(250, 135, 1000, 50);
 		this.getContentPane().add(textoBienvenida);
 		
 	    textodeabajo = new JLabel("Aqui podras gestionar tus reservas");
-	    textodeabajo.setBounds(250, 180, 1200, 50);
+	    textodeabajo.setBounds(250, 185, 1200, 50);
 	    textodeabajo.setFont(fuente2);
 	    textodeabajo.setForeground(Color.black);
 	    this.getContentPane().add(textodeabajo);
@@ -143,7 +144,7 @@ public class PantallaPrincipal extends JFrame implements ActionListener{
 		botonMenu.addActionListener(this);
 		botonMenu.setContentAreaFilled(false);
 		botonMenu.setIcon(menuM);
-		botonMenu.setFont(fuente2);
+		botonMenu.setFont(fuente5);
 		botonMenu.setBorderPainted(false);
 		botonMenu.setFocusPainted(false);
 		botonMenu.setOpaque(false);
@@ -157,7 +158,7 @@ public class PantallaPrincipal extends JFrame implements ActionListener{
 		botonMenu2.setIcon(menuM);
 		botonMenu2.setBorderPainted(false);
 		botonMenu2.setFocusPainted(false);
-		botonMenu.setFont(fuente1);
+		botonMenu.setFont(fuente5);
 		botonMenu2.setOpaque(false);
 		this.add(botonMenu2);
 	    
@@ -176,7 +177,7 @@ public class PantallaPrincipal extends JFrame implements ActionListener{
 	    
 	    botonUsuario = new JButton("USUARIO");
 	    botonUsuario.setBounds(15, 80, 145, 45);
-	    botonUsuario.setFont(fuente1);
+	    botonUsuario.setFont(fuente5);
 	    botonUsuario.setBorder(bordeBoton);
 	    botonUsuario.addActionListener(this);
 	    botonUsuario.setVisible(false);
@@ -186,7 +187,7 @@ public class PantallaPrincipal extends JFrame implements ActionListener{
 	    
 	    botonReservas = new JButton("RESERVAS");
 	    botonReservas.setBounds(15, 135, 145, 45);
-	    botonReservas.setFont(fuente1);
+	    botonReservas.setFont(fuente5);
 	    botonReservas.setBorder(bordeBoton);
 	    botonReservas.addActionListener(this);
 	    botonReservas.setVisible(false);

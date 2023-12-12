@@ -75,6 +75,7 @@ public class MisReservas extends JFrame implements ActionListener {
 		Font fuente2 = new Font("Dialog", Font.PLAIN, 20);
 		Font fuente3 = new Font("Dialog", Font.BOLD, 50);
 		Font fuente4 = new Font("Dialog", Font.BOLD, 27);
+		Font fuente5 = new Font("Dialog", Font.BOLD, 15);
 		
 		titulo = new JLabel("Mis reservas");
 		titulo.setFont(fuente3);
@@ -137,7 +138,7 @@ public class MisReservas extends JFrame implements ActionListener {
 		modificar.setBackground(new Color(242, 242, 242));
 		modificar.setBorder(new RoundedBorder(22));
 
-
+		//---------------------MENU LATERAL------------------------\\
         Border bordeBoton = new LineBorder(Color.BLACK, 1);
 	    botonMenu = new JButton();
 		botonMenu.setBounds(15, 15, 60, 60);
@@ -173,12 +174,10 @@ public class MisReservas extends JFrame implements ActionListener {
 	    botonVolver.setVisible(true);
 		botonVolver.addActionListener(this);
 		this.getContentPane().add(botonVolver);
-		
-
 	    
 	    botonUsuario = new JButton("USUARIO");
 	    botonUsuario.setBounds(15, 80, 145, 45);
-	    botonUsuario.setFont(fuente1);
+	    botonUsuario.setFont(fuente5);
 	    botonUsuario.setBorder(bordeBoton);
 	    botonUsuario.addActionListener(this);
 	    botonUsuario.setVisible(false);
@@ -188,7 +187,7 @@ public class MisReservas extends JFrame implements ActionListener {
 	    
 	    botonReservas = new JButton("RESERVAS");
 	    botonReservas.setBounds(15, 135, 145, 45);
-	    botonReservas.setFont(fuente1);
+	    botonReservas.setFont(fuente5);
 	    botonReservas.setBorder(bordeBoton);
 	    botonReservas.addActionListener(this);
 	    botonReservas.setVisible(false);
