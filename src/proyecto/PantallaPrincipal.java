@@ -8,7 +8,11 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
  */
-
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.awt.Color;
 
 import java.awt.Font;
@@ -35,6 +39,7 @@ public class PantallaPrincipal extends JFrame implements ActionListener{
 	JButton botonComprar;
 
 	JPanel comprar = new JPanel();
+	JTextField monedasc = new JTextField(3);
 	
 	
 	JLabel label1;
@@ -48,19 +53,18 @@ public class PantallaPrincipal extends JFrame implements ActionListener{
 	String nombreUsuario;
 	int creditos;
 	String[] FullUsuario = new String[7];
+
+	int monedat;
 	
 	ImageIcon icono =  new ImageIcon("Imagenes/volver.png");
 	ImageIcon menuM =  new ImageIcon("Imagenes/IconoMenu.png");
 	ImageIcon volver =  new ImageIcon("Imagenes/volver.png");
 	ImageIcon BlackCoin = new ImageIcon("Imagenes/BlackCoin.png");
 	
-	/* 
-	private static final String USER = "22_23_KIKOANUNCIOS";
-	private static final String PWD = "1234";
-	// Si est�is desde casa, la url ser� oracle.ilerna.com y no 192.168.3.26
-	private static final String URL = "jdbc:oracle:thin:@oracle.ilerna.com:1521:xe";
-	Connection con = conectarBaseDatos();
-	 */
+	private static final String USER = "DW2_2324_BOOK4U_KIA_CO";
+	private static final String PWD = "AKIA_CO";
+	// Si estais desde casa, la url sera oracle.ilerna.com y no 192.168.3.26
+	private static final String URL = "jdbc:oracle:thin:@192.168.3.26:1521:xe";
 	
 	public PantallaPrincipal(String[] sqluser) {
 		
@@ -127,6 +131,8 @@ public class PantallaPrincipal extends JFrame implements ActionListener{
 		comprar.add(new JTextField(8));
 		comprar.add(new JLabel("CCV:"));
 		comprar.add(new JTextField(3));
+		comprar.add(new JLabel("Monedas:"));
+		comprar.add(monedasc);
 		
 
 		
@@ -207,7 +213,7 @@ public class PantallaPrincipal extends JFrame implements ActionListener{
 	    		
 	}
 	
-	/*
+	
 	 private static Connection conectarBaseDatos() {
 		Connection con = null;
 
@@ -226,32 +232,23 @@ public class PantallaPrincipal extends JFrame implements ActionListener{
 
 		return con;
 	}
-	 */
 	
-	public String nombreUsu() {
-		
-		String nombre = "";
-		
-		/*
-		 * String seleccionNombre ="select nombreusuario from usuarios where DNI_CIF ='"+ nombreUsuario +"'";
-		
-		try{
-			java.sql.Statement st = con.createStatement();
-			 ResultSet rs = st.executeQuery(seleccionNombre);
-			 while(rs.next()){ 
-			 nombre = rs.getString(1);
-			 }
-		}catch(Exception ex) {
-			System.out.println(ex);
+	public void addocoin() {
+
+		Connection con = conectarBaseDatos();
+		monedat = Integer.parseInt(FullUsuario[6]) + Integer.parseInt(monedasc.getText());
+		FullUsuario[6] = Integer.toString(monedat);
+
+		String sql = "UPDATE USUARIOS set CREDITOS = '"+ FullUsuario[6] +"'' where userid = '"+ FullUsuario[0] +"'";
+		try {
+			Statement st = con.createStatement();
+			ResultSet rs = st.executeQuery(sql);
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
-		 */
-		String seleccionNombre ="select nombreusuario from usuarios where DNI_CIF ='"+ nombreUsuario +"'";
-		
-		return nombre;
-	}
-	
-	
-	@Override
+	}	
+
+    @Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == botonMenu) {
 			botonMenu.setVisible(false);
@@ -276,8 +273,12 @@ public class PantallaPrincipal extends JFrame implements ActionListener{
 			m.setVisible(true);
 			this.dispose();
 		} else if (e.getSource() == botonComprar) {
-			JOptionPane.showConfirmDialog(rootPane, comprar);
+			int input = JOptionPane.showConfirmDialog(rootPane, comprar, "Comprar Monedas", JOptionPane.YES_NO_OPTION);
+			if(input == 0) {
+				addocoin();
+			}
 		}
 		
 	}
+	
 }
