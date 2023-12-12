@@ -247,6 +247,10 @@ public class PantallaUsuario extends JFrame implements ActionListener {
 				botonMenu.setVisible(true);
 				botonUsuario.setVisible(false);
 				botonReservas.setVisible(false);
+			} else if (e.getSource() == botonReservas) {
+				MisReservas m = new MisReservas(FullUsuario);
+				m.setVisible(true);
+				this.dispose();
 			}
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'actionPerformed'");
