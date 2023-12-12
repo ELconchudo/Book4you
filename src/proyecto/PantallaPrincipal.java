@@ -8,7 +8,11 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
  */
-
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.awt.Color;
 
 import java.awt.Font;
@@ -35,6 +39,7 @@ public class PantallaPrincipal extends JFrame implements ActionListener{
 	JButton botonComprar;
 
 	JPanel comprar = new JPanel();
+	JTextField monedasc = new JTextField(3);
 	
 	
 	JLabel label1;
@@ -48,19 +53,18 @@ public class PantallaPrincipal extends JFrame implements ActionListener{
 	String nombreUsuario;
 	int creditos;
 	String[] FullUsuario = new String[7];
+
+	int monedat;
 	
 	ImageIcon icono =  new ImageIcon("Imagenes/volver.png");
 	ImageIcon menuM =  new ImageIcon("Imagenes/IconoMenu.png");
 	ImageIcon volver =  new ImageIcon("Imagenes/volver.png");
 	ImageIcon BlackCoin = new ImageIcon("Imagenes/BlackCoin.png");
 	
-	/* 
-	private static final String USER = "22_23_KIKOANUNCIOS";
-	private static final String PWD = "1234";
-	// Si est�is desde casa, la url ser� oracle.ilerna.com y no 192.168.3.26
-	private static final String URL = "jdbc:oracle:thin:@oracle.ilerna.com:1521:xe";
-	Connection con = conectarBaseDatos();
-	 */
+	private static final String USER = "DW2_2324_BOOK4U_KIA_CO";
+	private static final String PWD = "AKIA_CO";
+	// Si estais desde casa, la url sera oracle.ilerna.com y no 192.168.3.26
+	private static final String URL = "jdbc:oracle:thin:@192.168.3.26:1521:xe";
 	
 	public PantallaPrincipal(String[] sqluser) {
 		
@@ -73,30 +77,32 @@ public class PantallaPrincipal extends JFrame implements ActionListener{
 		this.getContentPane().setLayout(null);
 		this.getContentPane().setBackground(new Color(242,242,242));
 		
+		//FUENTES
 		Font fuente1 = new Font("Dialog", Font.PLAIN, 14);
 		Font fuente2 = new Font("Dialog", Font.PLAIN, 20);
 		Font fuente3 = new Font("Dialog", Font.BOLD, 50);
 		Font fuente4 = new Font("Dialog", Font.BOLD, 32);
+		Font fuente5 = new Font("Dialog", Font.BOLD, 15);
 		
 		titulo = new JLabel("Bienvenido " + nombreUsuario);
 		titulo.setFont(fuente3);
 		titulo.setForeground(Color.black);
-		titulo.setBounds(250, 60, 1000, 50);
+		titulo.setBounds(250, 60, 1000, 80);
 		this.getContentPane().add(titulo);
 		
 		textoBienvenida = new JLabel("Esta es la aplicacion Book4You");
 		textoBienvenida.setFont(fuente2);
 		textoBienvenida.setForeground(Color.black);
-		textoBienvenida.setBounds(250, 130, 1000, 50);
+		textoBienvenida.setBounds(250, 135, 1000, 50);
 		this.getContentPane().add(textoBienvenida);
 		
 	    textodeabajo = new JLabel("Aqui podras gestionar tus reservas");
-	    textodeabajo.setBounds(250, 180, 1200, 50);
+	    textodeabajo.setBounds(250, 185, 1200, 50);
 	    textodeabajo.setFont(fuente2);
 	    textodeabajo.setForeground(Color.black);
 	    this.getContentPane().add(textodeabajo);
 	    
-		//CREDITOS
+		//------------------CREDITOS USUARIO------------------\\
 		label1 = new JLabel(creditos + "");
 		label1.setForeground(Color.BLACK);
 		label1.setFont(fuente4);
@@ -109,7 +115,6 @@ public class PantallaPrincipal extends JFrame implements ActionListener{
 		logo.setBounds(970,60,50,50);
 		this.add(logo);
 
-
 		//Boton Comprar
 		botonComprar = new JButton();
 		botonComprar.setBounds(925,120,100,25);
@@ -117,25 +122,26 @@ public class PantallaPrincipal extends JFrame implements ActionListener{
 		this.getContentPane().add(botonComprar);
 		botonComprar.setText("Comprar");
 		botonComprar.addActionListener(this);
-
 		
-		//Panel
+		//--------------PANEL CREDITOS----------------\\
 		comprar.add(new JLabel("Numero Tarjeta:"));
 		comprar.add(new JTextField(16));
 		comprar.add(new JLabel("Fecha:"));
 		comprar.add(new JTextField(8));
 		comprar.add(new JLabel("CCV:"));
 		comprar.add(new JTextField(3));
+		comprar.add(new JLabel("Monedas:"));
+		comprar.add(monedasc);
 		
-
-		
-		//IMATGE D'USUARI
 		logo = new JLabel();
 		logo.setIcon(new ImageIcon("Imagenes/Logo3.png"));
 		logo.setBounds(280,200,500,500);
 		this.add(logo);
+
+
+
 		
-		//CREACIO DEL MENU
+		//---------------------MENU LATERAL------------------------\\
 	    Border bordeBoton = new LineBorder(Color.BLACK, 1);
 	    botonMenu = new JButton();
 		botonMenu.setBounds(15, 15, 60, 60);
@@ -143,7 +149,7 @@ public class PantallaPrincipal extends JFrame implements ActionListener{
 		botonMenu.addActionListener(this);
 		botonMenu.setContentAreaFilled(false);
 		botonMenu.setIcon(menuM);
-		botonMenu.setFont(fuente2);
+		botonMenu.setFont(fuente5);
 		botonMenu.setBorderPainted(false);
 		botonMenu.setFocusPainted(false);
 		botonMenu.setOpaque(false);
@@ -157,7 +163,7 @@ public class PantallaPrincipal extends JFrame implements ActionListener{
 		botonMenu2.setIcon(menuM);
 		botonMenu2.setBorderPainted(false);
 		botonMenu2.setFocusPainted(false);
-		botonMenu.setFont(fuente1);
+		botonMenu.setFont(fuente5);
 		botonMenu2.setOpaque(false);
 		this.add(botonMenu2);
 	    
@@ -176,7 +182,7 @@ public class PantallaPrincipal extends JFrame implements ActionListener{
 	    
 	    botonUsuario = new JButton("USUARIO");
 	    botonUsuario.setBounds(15, 80, 145, 45);
-	    botonUsuario.setFont(fuente1);
+	    botonUsuario.setFont(fuente5);
 	    botonUsuario.setBorder(bordeBoton);
 	    botonUsuario.addActionListener(this);
 	    botonUsuario.setVisible(false);
@@ -186,7 +192,7 @@ public class PantallaPrincipal extends JFrame implements ActionListener{
 	    
 	    botonReservas = new JButton("RESERVAS");
 	    botonReservas.setBounds(15, 135, 145, 45);
-	    botonReservas.setFont(fuente1);
+	    botonReservas.setFont(fuente5);
 	    botonReservas.setBorder(bordeBoton);
 	    botonReservas.addActionListener(this);
 	    botonReservas.setVisible(false);
@@ -206,7 +212,7 @@ public class PantallaPrincipal extends JFrame implements ActionListener{
 	    		
 	}
 	
-	/*
+	
 	 private static Connection conectarBaseDatos() {
 		Connection con = null;
 
@@ -225,32 +231,23 @@ public class PantallaPrincipal extends JFrame implements ActionListener{
 
 		return con;
 	}
-	 */
 	
-	public String nombreUsu() {
-		
-		String nombre = "";
-		
-		/*
-		 * String seleccionNombre ="select nombreusuario from usuarios where DNI_CIF ='"+ nombreUsuario +"'";
-		
-		try{
-			java.sql.Statement st = con.createStatement();
-			 ResultSet rs = st.executeQuery(seleccionNombre);
-			 while(rs.next()){ 
-			 nombre = rs.getString(1);
-			 }
-		}catch(Exception ex) {
-			System.out.println(ex);
+	public void addocoin() {
+
+		Connection con = conectarBaseDatos();
+		monedat = Integer.parseInt(FullUsuario[6]) + Integer.parseInt(monedasc.getText());
+		FullUsuario[6] = Integer.toString(monedat);
+
+		String sql = "UPDATE USUARIOS set CREDITOS = '"+ FullUsuario[6] +"'' where userid = '"+ FullUsuario[0] +"'";
+		try {
+			Statement st = con.createStatement();
+			ResultSet rs = st.executeQuery(sql);
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
-		 */
-		String seleccionNombre ="select nombreusuario from usuarios where DNI_CIF ='"+ nombreUsuario +"'";
-		
-		return nombre;
-	}
-	
-	
-	@Override
+	}	
+
+    @Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == botonMenu) {
 			botonMenu.setVisible(false);
@@ -275,8 +272,12 @@ public class PantallaPrincipal extends JFrame implements ActionListener{
 			m.setVisible(true);
 			this.dispose();
 		} else if (e.getSource() == botonComprar) {
-			JOptionPane.showConfirmDialog(rootPane, comprar);
+			int input = JOptionPane.showConfirmDialog(rootPane, comprar, "Comprar Monedas", JOptionPane.YES_NO_OPTION);
+			if(input == 0) {
+				addocoin();
+			}
 		}
 		
 	}
+	
 }

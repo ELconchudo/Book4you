@@ -43,6 +43,7 @@ public class Login extends JFrame implements ActionListener {
 	// Si estais desde casa, la url sera oracle.ilerna.com y no 192.168.3.26
 	private static final String URL = "jdbc:oracle:thin:@192.168.3.26:1521:xe";
 	private String[] sqluser = new String[7];
+	private String[] tsqluser = new String[7];
 	
 public Login() {
 		
@@ -126,14 +127,21 @@ public Login() {
 			ResultSet rs = st.executeQuery(sql);
 			if (rs.isBeforeFirst()) {
 				while (rs.next()) {
-					sqluser[0] = rs.getString("USERID");
-					sqluser[1] = rs.getString("DNI");
-					sqluser[2] = rs.getString("USUARIO");
-					sqluser[3] = rs.getString("CONTRASEÑA");
-					sqluser[4] = rs.getString("CORREO");
-					sqluser[5] = rs.getString("TELEFONO");
-					sqluser[6] = rs.getString("CREDITOS");
-					if (areaUsuario.getText().equals(sqluser[1]) && areaContrasena.getText().equals(sqluser[3])) {
+					tsqluser[0] = rs.getString("USERID");
+					tsqluser[1] = rs.getString("DNI");
+					tsqluser[2] = rs.getString("USUARIO");
+					tsqluser[3] = rs.getString("CONTRASEÑA");
+					tsqluser[4] = rs.getString("CORREO");
+					tsqluser[5] = rs.getString("TELEFONO");
+					tsqluser[6] = rs.getString("CREDITOS");
+					if (areaUsuario.getText().equals(tsqluser[1]) && areaContrasena.getText().equals(tsqluser[3])) {
+						sqluser[0] = rs.getString("USERID");
+						sqluser[1] = rs.getString("DNI");
+						sqluser[2] = rs.getString("USUARIO");
+						sqluser[3] = rs.getString("CONTRASEÑA");
+						sqluser[4] = rs.getString("CORREO");
+						sqluser[5] = rs.getString("TELEFONO");
+						sqluser[6] = rs.getString("CREDITOS");
 						System.out.println("Habia un usuario");
 						JOptionPane.showMessageDialog(null, "Bienvenido "+ sqluser[1]);
 						this.setVisible(false);

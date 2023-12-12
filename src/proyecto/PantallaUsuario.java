@@ -68,8 +68,8 @@ public class PantallaUsuario extends JFrame implements ActionListener {
     public PantallaUsuario(String[] sqluser) {
 
         Font fuente1 = new Font("Dialog", Font.BOLD, 16);
-		Font fuente2 = new Font("Dialog", Font.PLAIN, 18);
-        Font fuente3 = new Font("Dialog", Font.BOLD, 50);
+		Font fuente2 = new Font("Dialog", Font.BOLD, 15);
+        Font fuente3 = new Font("Dialog", Font.BOLD, 20);
 		Font fuente4 = new Font("Dialog", Font.BOLD, 45);
         Font fuente5 = new Font("Dialog", Font.BOLD, 18);
 
@@ -115,8 +115,8 @@ public class PantallaUsuario extends JFrame implements ActionListener {
 
         //-----------------BOTON EDITAR PERFIL---------------\\
 		botonEditar = new JButton("Editar perfil");
-		botonEditar.setFont(fuente1);
-		botonEditar.setBounds(535, 400, 150, 45);
+		botonEditar.setFont(fuente2);
+		botonEditar.setBounds(535, 420, 150, 45);
 	    botonEditar.setBorder(bordeBoton);
 	    botonEditar.addActionListener(this);
 	    botonEditar.setContentAreaFilled(false);
@@ -124,7 +124,7 @@ public class PantallaUsuario extends JFrame implements ActionListener {
 	    this.add(botonEditar);
 	    
 	    botonGuardar = new JButton("Guardar");
-	    botonGuardar.setFont(fuente1);
+	    botonGuardar.setFont(fuente2);
 	    botonGuardar.setBounds(525, 420, 150, 45);
 	    botonGuardar.setBorder(bordeBoton);
 	    botonGuardar.addActionListener(this);
@@ -136,39 +136,40 @@ public class PantallaUsuario extends JFrame implements ActionListener {
         //-----------------DATOS DEL USUARIO---------------\\
         cif = new JLabel(FullUsuario[1]);
 	    cif.setFont (fuente5) ;
-	    cif.setBounds(600, 194, 150, 30);
+	    cif.setBounds(600, 207, 150, 30);
 		this.add(cif);
 
         personaEditar = new JTextField(FullUsuario[2]);
-	    personaEditar.setBounds(600, 247, 150, 30);
+	    personaEditar.setBounds(600, 265, 150, 30);
 	    personaEditar.setEditable(false);
 	    personaEditar.setVisible(true);
 	    this.add(personaEditar);
 	    personaEditar.getText();
 	    
 	    correoEditar = new JTextField(FullUsuario[4]);
-	    correoEditar.setBounds(600, 297, 150, 30);
+	    correoEditar.setBounds(600, 310, 150, 30);
 	    correoEditar.setEditable(false);
 	    correoEditar.setVisible(true);
 	    this.add(correoEditar);
 	    correoEditar.getText();
 	    
 	    telefonoEditar = new JTextField(FullUsuario[5]);
-	    telefonoEditar.setBounds(600, 345, 150, 30);
+	    telefonoEditar.setBounds(600, 360, 150, 30);
 	    telefonoEditar.setEditable(false);
 	    telefonoEditar.setVisible(true);
 	    this.add(telefonoEditar);
 	    telefonoEditar.getText();
        
 
-        //Border bordeBoton = new LineBorder(Color.BLACK, 1);
+		//----------------------MENU LATERAL-------------------------\\
+        Border borderBoton = new LineBorder(Color.BLACK, 1);
 	    botonMenu = new JButton();
 		botonMenu.setBounds(15, 15, 60, 60);
 		this.getContentPane().add(botonMenu);
 		botonMenu.addActionListener(this);
 		botonMenu.setContentAreaFilled(false);
 		botonMenu.setIcon(menuM);
-		botonMenu.setFont(fuente2);
+		botonMenu.setFont(fuente3);
 		botonMenu.setBorderPainted(false);
 		botonMenu.setFocusPainted(false);
 		botonMenu.setOpaque(false);
@@ -182,7 +183,7 @@ public class PantallaUsuario extends JFrame implements ActionListener {
 		botonMenu2.setIcon(menuM);
 		botonMenu2.setBorderPainted(false);
 		botonMenu2.setFocusPainted(false);
-		botonMenu.setFont(fuente1);
+		botonMenu.setFont(fuente3);
 		botonMenu2.setOpaque(false);
 		this.add(botonMenu2);
 	    
@@ -196,12 +197,10 @@ public class PantallaUsuario extends JFrame implements ActionListener {
 	    botonVolver.setVisible(true);
 		botonVolver.addActionListener(this);
 		this.getContentPane().add(botonVolver);
-		
-
 	    
 	    botonUsuario = new JButton("USUARIO");
 	    botonUsuario.setBounds(15, 80, 145, 45);
-	    botonUsuario.setFont(fuente1);
+	    botonUsuario.setFont(fuente2);
 	    botonUsuario.setBorder(bordeBoton);
 	    botonUsuario.addActionListener(this);
 	    botonUsuario.setVisible(false);
@@ -211,7 +210,7 @@ public class PantallaUsuario extends JFrame implements ActionListener {
 	    
 	    botonReservas = new JButton("RESERVAS");
 	    botonReservas.setBounds(15, 135, 145, 45);
-	    botonReservas.setFont(fuente1);
+	    botonReservas.setFont(fuente2);
 	    botonReservas.setBorder(bordeBoton);
 	    botonReservas.addActionListener(this);
 	    botonReservas.setVisible(false);
