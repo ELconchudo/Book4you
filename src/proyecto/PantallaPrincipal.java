@@ -77,7 +77,7 @@ public class PantallaPrincipal extends JFrame implements ActionListener{
 		this.getContentPane().setLayout(null);
 		this.getContentPane().setBackground(new Color(242,242,242));
 		
-		//FUENTES
+		//------------------------FUENTES-------------------------\\
 		Font fuente1 = new Font("Dialog", Font.PLAIN, 14);
 		Font fuente2 = new Font("Dialog", Font.PLAIN, 20);
 		Font fuente3 = new Font("Dialog", Font.BOLD, 50);
@@ -177,8 +177,6 @@ public class PantallaPrincipal extends JFrame implements ActionListener{
 	    botonVolver.setVisible(true);
 		botonVolver.addActionListener(this);
 		this.getContentPane().add(botonVolver);
-		
-
 	    
 	    botonUsuario = new JButton("USUARIO");
 	    botonUsuario.setBounds(15, 80, 145, 45);

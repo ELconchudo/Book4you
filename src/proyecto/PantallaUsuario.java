@@ -13,6 +13,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 */
+import java.sql.PreparedStatement;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -29,10 +30,7 @@ import javax.swing.border.LineBorder;
 
 public class PantallaUsuario extends JFrame implements ActionListener {
 
-    JButton Opciones;
-	JButton MisAnuncios;
-	JButton VentanaUsuario;
-	JLabel logo;
+	boolean estaEditando = true;
 	JLabel titulo;
 	JLabel label1;
 	JPanel panelLateral;
@@ -56,7 +54,6 @@ public class PantallaUsuario extends JFrame implements ActionListener {
 	JTextField correoEditar;
 	JTextField telefonoEditar;
 	JTextField personaEditar;
-
 	String nombreUsuario;
 	int creditos;
 	String[] FullUsuario = new String[7];
@@ -70,7 +67,7 @@ public class PantallaUsuario extends JFrame implements ActionListener {
         Font fuente1 = new Font("Dialog", Font.BOLD, 16);
 		Font fuente2 = new Font("Dialog", Font.BOLD, 15);
         Font fuente3 = new Font("Dialog", Font.BOLD, 20);
-		Font fuente4 = new Font("Dialog", Font.BOLD, 45);
+		Font fuente4 = new Font("Dialog", Font.BOLD, 50);
         Font fuente5 = new Font("Dialog", Font.BOLD, 18);
 
 		FullUsuario = sqluser;
@@ -82,27 +79,27 @@ public class PantallaUsuario extends JFrame implements ActionListener {
 		this.getContentPane().setLayout(null);
 		this.getContentPane().setBackground(new Color(242,242,242));
 		
-        //---------------------USUARIO-----------------------//
+        //---------------------LABELS-----------------------//
         titulo = new JLabel("Perfil de usuario");
 		titulo.setFont(fuente4);
 		titulo.setForeground(Color.black);
-		titulo.setBounds(450, 130, 1000, 60);
+		titulo.setBounds(440, 125, 1000, 60);
 		this.getContentPane().add(titulo);
 		
 		
 		Texto = new JLabel("DNI: ");
 		Texto.setFont (fuente1) ;
-		Texto.setBounds(550,215,300,20);
+		Texto.setBounds(555,215,300,20);
 		this.add(Texto);
 		
 		Texto2 = new JLabel("Usuario: " );
 		Texto2.setFont (fuente1) ;
-		Texto2.setBounds(530,265,300,20);
+		Texto2.setBounds(525,265,300,20);
 		this.add(Texto2);
 		
 		Texto4 = new JLabel("Email: " );
 		Texto4.setFont (fuente1) ;
-		Texto4.setBounds(535,315,300,20);
+		Texto4.setBounds(542,315,300,20);
 		this.add(Texto4);
 		
 		Texto5 = new JLabel("Telefono: " );
@@ -116,7 +113,7 @@ public class PantallaUsuario extends JFrame implements ActionListener {
         //-----------------BOTON EDITAR PERFIL---------------\\
 		botonEditar = new JButton("Editar perfil");
 		botonEditar.setFont(fuente2);
-		botonEditar.setBounds(535, 420, 150, 45);
+		botonEditar.setBounds(540, 422, 150, 45);
 	    botonEditar.setBorder(bordeBoton);
 	    botonEditar.addActionListener(this);
 	    botonEditar.setContentAreaFilled(false);
@@ -125,7 +122,7 @@ public class PantallaUsuario extends JFrame implements ActionListener {
 	    
 	    botonGuardar = new JButton("Guardar");
 	    botonGuardar.setFont(fuente2);
-	    botonGuardar.setBounds(525, 420, 150, 45);
+	    botonGuardar.setBounds(540, 422, 150, 45);
 	    botonGuardar.setBorder(bordeBoton);
 	    botonGuardar.addActionListener(this);
 	    botonGuardar.setVisible(false);
@@ -136,11 +133,11 @@ public class PantallaUsuario extends JFrame implements ActionListener {
         //-----------------DATOS DEL USUARIO---------------\\
         cif = new JLabel(FullUsuario[1]);
 	    cif.setFont (fuente5) ;
-	    cif.setBounds(600, 207, 150, 30);
+	    cif.setBounds(600, 209, 150, 30);
 		this.add(cif);
 
         personaEditar = new JTextField(FullUsuario[2]);
-	    personaEditar.setBounds(600, 265, 150, 30);
+	    personaEditar.setBounds(600, 260, 150, 30);
 	    personaEditar.setEditable(false);
 	    personaEditar.setVisible(true);
 	    this.add(personaEditar);
@@ -224,13 +221,51 @@ public class PantallaUsuario extends JFrame implements ActionListener {
 		panelLateral.setBackground(new Color(173,235,173));
 		this.getContentPane().add(panelLateral);
 		panelLateral.setVisible(true);
-	  	
 	    this.setVisible(true);
 
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
+		if(e.getSource() == botonEditar) {
+			botonGuardar.setVisible(true);
+			botonEditar.setVisible(false);
+			direccionEditar.setEditable(estaEditando);
+			correoEditar.setEditable(estaEditando);
+			telefonoEditar.setEditable(estaEditando);
+			personaEditar.setEditable(estaEditando);
+			Texto6.setVisible(true);
+			botonMenu.setVisible(false);	
+		}
+
+		if(e.getSource() == botonGuardar) {
+			botonGuardar.setVisible(false);
+			botonEditar.setVisible(true);
+			direccionEditar.setEditable(false);
+			correoEditar.setEditable(false);
+			telefonoEditar.setEditable(false);
+			personaEditar.setEditable(false);
+			botonMenu.setVisible(true);
+			Texto6.setVisible(false);
+			
+			
+			String direccion = direccionEditar.getText();
+			String correo = correoEditar.getText();
+			String telefono = telefonoEditar.getText();
+			String persona = personaEditar.getText();
+			
+			/*
+			try {
+				String query = "UPDATE USUARIOS SET DIRECCIÓNRESIDENCIAL='"+direccion+"',CORREOELECTRÓNICO='" + correo + "',TELÉFONO='" + telefono + "',NOMBREUSUARIO='" + persona + "',URLIMAGEN='" + imagen + "'WHERE DNI_CIF='"+DNICIF+"'";
+				PreparedStatement actu = con.prepareStatement(query);
+				actu.executeUpdate();
+			} catch (Exception e2) {
+				
+				System.out.println(e2);
+			}
+			*/
+		}
+
 
         if(e.getSource() == botonMenu) {
 			botonMenu.setVisible(false);
