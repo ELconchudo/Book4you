@@ -1,10 +1,9 @@
 package proyecto;
 
 import java.awt.Color;
-import java.awt.Component;
+
 import java.awt.Font;
-import java.awt.Graphics;
-import java.awt.Insets;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 /*
@@ -14,20 +13,21 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 */
 
+
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
+
 import javax.swing.JPanel;
-import javax.swing.JPasswordField;
+
 import javax.swing.JTextField;
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
 
-public class MisReservas extends JFrame implements ActionListener {
+public class NuevaReserva extends JFrame implements ActionListener {
 
     JButton Opciones;
 	JButton MisAnuncios;
@@ -48,95 +48,68 @@ public class MisReservas extends JFrame implements ActionListener {
     JButton nueva;
     JButton cancelar;
     JButton modificar;
-
-	String nombreUsuario;
-	int creditos;
-	String[] FullUsuario = new String[7];
+	
+	JTextField textousuario = new JTextField("");
+	JTextField textocontrasena;
+	JTextField textocorreo = new JTextField("");
+	JTextField textotelefono = new JTextField("");
+	JTextField textoCIF = new JTextField("");
+	JTextField textodireccion = new JTextField("");
+	JTextField textoNumeroCuenta = new JTextField("");
+	JTextField textoClaveAcceso = new JTextField("");
+	JTextField textocontrasena2;
+	
+	
+	
+	JLabel usuario;
+	JLabel contrasena;
+	JLabel contrasena2;
+	JLabel repetir;
+	JLabel tituloregistro;
+	JLabel correo;
+	JLabel telefono;
+	JLabel CIF;
+	JLabel direccion;
+	JLabel metodo;
+	JLabel numeroCuenta;
+	JLabel ClaveAcceso;
+	JButton Registrarse;
+	JButton Volver;
 
     ImageIcon icono =  new ImageIcon("Imagenes/volver.png");
 	ImageIcon menuM =  new ImageIcon("Imagenes/IconoMenu.png");
 	ImageIcon volver =  new ImageIcon("Imagenes/volver.png");
 
-	private String[] sqluser = new String[7];
+    String nombreUsuario;
+	int creditos;
+	String[] FullUsuario = new String[7];
 
-    public MisReservas(String[] sqluser) {
+	
+	
+	
+	JLabel avisoNombre = new JLabel();
+	JLabel avisoContrasena = new JLabel();
+	JLabel avisoRepetir = new JLabel();
+	JLabel avisoCorreo = new JLabel();
+	
+	private static final String USER = "DW2_2324_BOOK4U_KIA_CO";
+	private static final String PWD = "AKIA_CO";
+	// Si estais desde casa, la url sera oracle.ilerna.com y no 192.168.3.26
+	private static final String URL = "jdbc:oracle:thin:@192.168.3.26:1521:xe";
+	
+	
+	public NuevaReserva (String[] sqluser) {
 
-		FullUsuario = sqluser;
-
-		this.creditos = Integer.parseInt(sqluser[6]);
-
-        this.setBounds(300, 130, 1080, 700);
+        FullUsuario = sqluser;
+	
+		this.setBounds(300, 130, 1080, 700);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.getContentPane().setLayout(null);
-		this.getContentPane().setBackground(new Color(242,242,242));
-
-
-        Font fuente1 = new Font("Dialog", Font.PLAIN, 14);
-		Font fuente2 = new Font("Dialog", Font.PLAIN, 20);
-		Font fuente3 = new Font("Dialog", Font.BOLD, 50);
-		Font fuente4 = new Font("Dialog", Font.BOLD, 27);
+        this.getContentPane().setBackground(new Color(242,242,242));
 		
-		titulo = new JLabel("Mis reservas");
-		titulo.setFont(fuente3);
-		titulo.setForeground(Color.black);
-		titulo.setBounds(450, 60, 1000, 60);
-		this.getContentPane().add(titulo);
-
-		ejemplo = new JLabel("Reserva de ejemplo");
-		ejemplo.setFont(fuente4);
-		ejemplo.setForeground(Color.black);
-		ejemplo.setBounds(470, 175, 1000, 60);
-		this.getContentPane().add(ejemplo);
-
-		ejemplo2 = new JLabel("Reserva de ejemplo");
-		ejemplo2.setFont(fuente4);
-		ejemplo2.setForeground(Color.black);
-		ejemplo2.setBounds(470, 265, 1000, 60);
-		this.getContentPane().add(ejemplo2);
-
-		ejemplo3 = new JLabel("Reserva de ejemplo");
-		ejemplo3.setFont(fuente4);
-		ejemplo3.setForeground(Color.black);
-		ejemplo3.setBounds(470, 355, 1000, 60);
-		this.getContentPane().add(ejemplo3);
-
-		//CREDITOS
-		label1 = new JLabel(creditos + "");
-		label1.setForeground(Color.BLACK);
-		label1.setFont(fuente4);
-		label1.setBounds(950, 60, 50, 50);
-		label1.setVisible(true);
-		this.add(label1);
-		logo = new JLabel();
-		logo.setIcon(new ImageIcon("Imagenes/BlackCoin.png"));
-		logo.setBounds(970,60,50,50);
-		this.add(logo);
-
-       
-        nueva = new JButton("Hacer nueva reserva");
-		nueva.setBounds(300, 500, 190, 30);
-		this.getContentPane().add(nueva);
-		nueva.addActionListener(this);
-		nueva.setForeground(Color.BLACK);
-		nueva.setBackground(new Color(242, 242, 242));
-		nueva.setBorder(new RoundedBorder(22));
-
-        cancelar = new JButton("Cancelar reserva");
-		cancelar.setBounds(530, 500, 170, 30);
-		this.getContentPane().add(cancelar);
-		cancelar.addActionListener(this);
-		cancelar.setForeground(Color.BLACK);
-		cancelar.setBackground(new Color(242, 242, 242));
-		cancelar.setBorder(new RoundedBorder(22));
-
-        modificar = new JButton("Modificar reserva");
-		modificar.setBounds(740, 500, 170, 30);
-		this.getContentPane().add(modificar);
-		modificar.addActionListener(this);
-		modificar.setForeground(Color.BLACK);
-		modificar.setBackground(new Color(242, 242, 242));
-		modificar.setBorder(new RoundedBorder(22));
-
+		Font fuente1 = new Font("Dialog", Font.BOLD ,28);
+		Font fuente2 = new Font("Dialog", Font.BOLD ,16);
+		Font fuente3 = new Font("Dialog", Font.PLAIN ,12);
 
         Border bordeBoton = new LineBorder(Color.BLACK, 1);
 	    botonMenu = new JButton();
@@ -173,10 +146,9 @@ public class MisReservas extends JFrame implements ActionListener {
 	    botonVolver.setVisible(true);
 		botonVolver.addActionListener(this);
 		this.getContentPane().add(botonVolver);
-		
 
-	    
-	    botonUsuario = new JButton("USUARIO");
+
+        botonUsuario = new JButton("USUARIO");
 	    botonUsuario.setBounds(15, 80, 145, 45);
 	    botonUsuario.setFont(fuente1);
 	    botonUsuario.setBorder(bordeBoton);
@@ -204,8 +176,8 @@ public class MisReservas extends JFrame implements ActionListener {
 		panelLateral.setVisible(true);
 	  	
 	    this.setVisible(true);
-
     }
+
 
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -217,7 +189,7 @@ public class MisReservas extends JFrame implements ActionListener {
 			botonReservas.setVisible(true);
 			
 		} else if (e.getSource() == botonVolver) {
-			PantallaPrincipal pp = new PantallaPrincipal(FullUsuario);
+			MisReservas pp = new MisReservas(FullUsuario);
 			pp.setVisible(true);
 			this.dispose();
 			} else if(e.getSource() == botonMenu2) {
@@ -228,12 +200,6 @@ public class MisReservas extends JFrame implements ActionListener {
 				PantallaUsuario m = new PantallaUsuario(FullUsuario);
 				m.setVisible(true);
 				this.dispose();
-			}else if(e.getSource() == nueva){
-				NuevaReserva m = new NuevaReserva(FullUsuario);
-				m.setVisible(true);
-				this.dispose();
 			}
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'actionPerformed'");
-    }
+}
 }
