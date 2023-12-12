@@ -224,9 +224,12 @@ public class MisReservas extends JFrame implements ActionListener {
 				botonMenu.setVisible(true);
 				botonUsuario.setVisible(false);
 				botonReservas.setVisible(false);
+			}else if(e.getSource() == botonUsuario){
+				PantallaUsuario m = new PantallaUsuario(FullUsuario);
+				m.setVisible(true);
+				this.dispose();
 			}
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'actionPerformed'");
     }
-    
 }
