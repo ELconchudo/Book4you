@@ -86,28 +86,28 @@ public class PantallaUsuario extends JFrame implements ActionListener {
         titulo = new JLabel("Perfil de usuario");
 		titulo.setFont(fuente4);
 		titulo.setForeground(Color.black);
-		titulo.setBounds(450, 123, 1000, 60);
+		titulo.setBounds(450, 130, 1000, 60);
 		this.getContentPane().add(titulo);
 		
 		
 		Texto = new JLabel("DNI: ");
 		Texto.setFont (fuente1) ;
-		Texto.setBounds(547,200,300,20);
+		Texto.setBounds(550,215,300,20);
 		this.add(Texto);
 		
 		Texto2 = new JLabel("Usuario: " );
 		Texto2.setFont (fuente1) ;
-		Texto2.setBounds(530,250,300,20);
+		Texto2.setBounds(530,265,300,20);
 		this.add(Texto2);
 		
 		Texto4 = new JLabel("Email: " );
 		Texto4.setFont (fuente1) ;
-		Texto4.setBounds(530,300,300,20);
+		Texto4.setBounds(535,315,300,20);
 		this.add(Texto4);
 		
 		Texto5 = new JLabel("Telefono: " );
 		Texto5.setFont (fuente1) ;
-		Texto5.setBounds(515,350,300,20);
+		Texto5.setBounds(515,365,300,20);
 		this.add(Texto5);
 
 
