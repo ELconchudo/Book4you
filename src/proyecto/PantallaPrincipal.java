@@ -77,6 +77,7 @@ public class PantallaPrincipal extends JFrame implements ActionListener{
 		this.getContentPane().setLayout(null);
 		this.getContentPane().setBackground(new Color(242,242,242));
 		
+		//FUENTES
 		Font fuente1 = new Font("Dialog", Font.PLAIN, 14);
 		Font fuente2 = new Font("Dialog", Font.PLAIN, 20);
 		Font fuente3 = new Font("Dialog", Font.BOLD, 50);
@@ -101,7 +102,7 @@ public class PantallaPrincipal extends JFrame implements ActionListener{
 	    textodeabajo.setForeground(Color.black);
 	    this.getContentPane().add(textodeabajo);
 	    
-		//CREDITOS
+		//------------------CREDITOS USUARIO------------------\\
 		label1 = new JLabel(creditos + "");
 		label1.setForeground(Color.BLACK);
 		label1.setFont(fuente4);
@@ -114,7 +115,6 @@ public class PantallaPrincipal extends JFrame implements ActionListener{
 		logo.setBounds(970,60,50,50);
 		this.add(logo);
 
-
 		//Boton Comprar
 		botonComprar = new JButton();
 		botonComprar.setBounds(925,120,100,25);
@@ -122,9 +122,8 @@ public class PantallaPrincipal extends JFrame implements ActionListener{
 		this.getContentPane().add(botonComprar);
 		botonComprar.setText("Comprar");
 		botonComprar.addActionListener(this);
-
 		
-		//Panel
+		//--------------PANEL CREDITOS----------------\\
 		comprar.add(new JLabel("Numero Tarjeta:"));
 		comprar.add(new JTextField(16));
 		comprar.add(new JLabel("Fecha:"));
@@ -134,15 +133,15 @@ public class PantallaPrincipal extends JFrame implements ActionListener{
 		comprar.add(new JLabel("Monedas:"));
 		comprar.add(monedasc);
 		
-
-		
-		//IMATGE D'USUARI
 		logo = new JLabel();
 		logo.setIcon(new ImageIcon("Imagenes/Logo3.png"));
 		logo.setBounds(280,200,500,500);
 		this.add(logo);
+
+
+
 		
-		//CREACIO DEL MENU
+		//---------------------MENU LATERAL------------------------\\
 	    Border bordeBoton = new LineBorder(Color.BLACK, 1);
 	    botonMenu = new JButton();
 		botonMenu.setBounds(15, 15, 60, 60);
