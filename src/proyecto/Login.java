@@ -54,28 +54,12 @@ public Login() {
 	
 		Font font3 = new Font("Arial", Font.BOLD ,20);	
 		
+
+		//LOGO EMPRESA
 		Titulo = new JLabel(Logo);
 		Titulo.setBounds(260,20,520,200);
 		this.add(Titulo);
 		Titulo.setVisible(true);
-		
-		//BOTON LOGIN
-		Login = new JButton("Login");
-		Login.setBounds(400, 450, 113, 25);
-		this.getContentPane().add(Login);
-		Login.addActionListener(this);
-		Login.setForeground(Color.BLACK);
-		Login.setBackground(new Color(242, 242, 242));
-		Login.setBorder(new RoundedBorder(22));
-		
-		//BOTON REGISTRO
-		Registrarse = new JButton("Registrarse");
-		Registrarse.setBounds(560, 450, 113, 25);
-		this.getContentPane().add(Registrarse);
-		Registrarse.addActionListener(this);
-		Registrarse.setForeground(Color.BLACK);
-		Registrarse.setBackground(new Color(242, 242, 242));
-		Registrarse.setBorder(new RoundedBorder(22));
 		
 		//CAMPOS USUARIOS
 		Usuario = new JLabel("Usuario");
@@ -100,6 +84,24 @@ public Login() {
 		areaContrasena.setBounds(550, 351, 120, 30);
 		this.getContentPane().add(areaContrasena);
 		areaContrasena.addActionListener(this);
+
+		//BOTON LOGIN
+		Login = new JButton("Login");
+		Login.setBounds(400, 450, 113, 25);
+		this.getContentPane().add(Login);
+		Login.addActionListener(this);
+		Login.setForeground(Color.BLACK);
+		Login.setBackground(new Color(242, 242, 242));
+		Login.setBorder(new RoundedBorder(22));
+		
+		//BOTON REGISTRO
+		Registrarse = new JButton("Registrarse");
+		Registrarse.setBounds(560, 450, 113, 25);
+		this.getContentPane().add(Registrarse);
+		Registrarse.addActionListener(this);
+		Registrarse.setForeground(Color.BLACK);
+		Registrarse.setBackground(new Color(242, 242, 242));
+		Registrarse.setBorder(new RoundedBorder(22));
 		
 		this.setVisible(true);
 }
@@ -169,6 +171,7 @@ public Login() {
 			Connection con = conectarBaseDatos();
 			System.out.println(con);
 			ulogin(con);
+			
 		}	
 	}
 }

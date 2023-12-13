@@ -167,7 +167,7 @@ public class PantallaPrincipal extends JFrame implements ActionListener{
 		botonMenu2.setOpaque(false);
 		this.add(botonMenu2);
 	    
-	    botonVolver = new JButton(icono);
+	    botonVolver = new JButton(volver);
 	    botonVolver.setBounds(2, 575, 140, 60);
 	    botonVolver.setBackground(new Color(242, 242, 242));
 	    botonVolver.setFocusPainted(false);
@@ -252,6 +252,7 @@ public class PantallaPrincipal extends JFrame implements ActionListener{
 			botonMenu2.setVisible(true);
 			botonUsuario.setVisible(true);
 			botonReservas.setVisible(true);
+			System.out.println(FullUsuario[2]);
 			
 		} else if (e.getSource() == botonVolver) {
 			Login l = new Login();

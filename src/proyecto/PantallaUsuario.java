@@ -7,6 +7,8 @@ import java.awt.Graphics;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
 /*
 import java.beans.Statement;
 import java.sql.Connection;
@@ -14,6 +16,8 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 */
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -50,10 +54,9 @@ public class PantallaUsuario extends JFrame implements ActionListener {
     JLabel Usuario;
     JButton botonEditar;
 	JButton botonGuardar;
-    JTextField direccionEditar;
 	JTextField correoEditar;
 	JTextField telefonoEditar;
-	JTextField personaEditar;
+	JTextField nombreEditar;
 	String nombreUsuario;
 	int creditos;
 	String[] FullUsuario = new String[7];
@@ -61,6 +64,11 @@ public class PantallaUsuario extends JFrame implements ActionListener {
     ImageIcon icono =  new ImageIcon("Imagenes/volver.png");
 	ImageIcon menuM =  new ImageIcon("Imagenes/IconoMenu.png");
 	ImageIcon volver =  new ImageIcon("Imagenes/volver.png");
+
+	private static final String USER = "DW2_2324_BOOK4U_KIA_CO";
+	private static final String PWD = "AKIA_CO";
+	// Si estais desde casa, la url sera oracle.ilerna.com y no 192.168.3.26
+	private static final String URL = "jdbc:oracle:thin:@192.168.3.26:1521:xe";
 
     public PantallaUsuario(String[] sqluser) {
 
@@ -110,7 +118,7 @@ public class PantallaUsuario extends JFrame implements ActionListener {
 
         Border bordeBoton = new LineBorder(Color.BLACK, 3);
 
-        //-----------------BOTON EDITAR PERFIL---------------\\
+        //--------------------BOTON EDITAR PERFIL------------------\\
 		botonEditar = new JButton("Editar perfil");
 		botonEditar.setFont(fuente2);
 		botonEditar.setBounds(540, 422, 150, 45);
@@ -136,12 +144,12 @@ public class PantallaUsuario extends JFrame implements ActionListener {
 	    cif.setBounds(600, 209, 150, 30);
 		this.add(cif);
 
-        personaEditar = new JTextField(FullUsuario[2]);
-	    personaEditar.setBounds(600, 260, 150, 30);
-	    personaEditar.setEditable(false);
-	    personaEditar.setVisible(true);
-	    this.add(personaEditar);
-	    personaEditar.getText();
+        nombreEditar = new JTextField(FullUsuario[2]);
+	    nombreEditar.setBounds(600, 260, 150, 30);
+	    nombreEditar.setEditable(false);
+	    nombreEditar.setVisible(true);
+	    this.add(nombreEditar);
+	    nombreEditar.getText();
 	    
 	    correoEditar = new JTextField(FullUsuario[4]);
 	    correoEditar.setBounds(600, 310, 150, 30);
@@ -225,45 +233,65 @@ public class PantallaUsuario extends JFrame implements ActionListener {
 
     }
 
+
+
+	//-------------------CONEXIÓN BASE DE DATO-------------------\\  
+	private static Connection conectarBaseDatos() {
+		Connection con = null;
+
+		System.out.println("Intentando conectarse a la base de datos");
+		
+		try {
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			con = DriverManager.getConnection(URL, USER, PWD);
+		} catch (ClassNotFoundException e) {
+			System.out.println("No se ha encontrado el driver " + e);
+		} catch (SQLException e) {
+			System.out.println("Error en las credenciales o en la URL " + e);
+		}
+
+		System.out.println("Conectados a la base de datos");
+
+		return con;
+	}
+
+	
+
     @Override
     public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == botonEditar) {
 			botonGuardar.setVisible(true);
 			botonEditar.setVisible(false);
-			direccionEditar.setEditable(estaEditando);
 			correoEditar.setEditable(estaEditando);
 			telefonoEditar.setEditable(estaEditando);
-			personaEditar.setEditable(estaEditando);
-			Texto6.setVisible(true);
+			nombreEditar.setEditable(estaEditando);
 			botonMenu.setVisible(false);	
 		}
 
 		if(e.getSource() == botonGuardar) {
 			botonGuardar.setVisible(false);
 			botonEditar.setVisible(true);
-			direccionEditar.setEditable(false);
 			correoEditar.setEditable(false);
 			telefonoEditar.setEditable(false);
-			personaEditar.setEditable(false);
+			nombreEditar.setEditable(false);
 			botonMenu.setVisible(true);
-			Texto6.setVisible(false);
 			
 			
-			String direccion = direccionEditar.getText();
 			String correo = correoEditar.getText();
 			String telefono = telefonoEditar.getText();
-			String persona = personaEditar.getText();
+			String nombre = nombreEditar.getText();
+			String dni = cif.getText();
 			
-			/*
+			
 			try {
-				String query = "UPDATE USUARIOS SET DIRECCIÓNRESIDENCIAL='"+direccion+"',CORREOELECTRÓNICO='" + correo + "',TELÉFONO='" + telefono + "',NOMBREUSUARIO='" + persona + "',URLIMAGEN='" + imagen + "'WHERE DNI_CIF='"+DNICIF+"'";
-				PreparedStatement actu = con.prepareStatement(query);
-				actu.executeUpdate();
+				String query = "UPDATE USUARIOS SET CORREO='"+ correo +"', TELEFONO='"+ telefono+"', USUARIO='"+ nombre +"' WHERE DNICIF='" + dni;
+				//PreparedStatement actu = con.prepareStatement(query);
+				//actu.executeUpdate();
 			} catch (Exception e2) {
 				
 				System.out.println(e2);
 			}
-			*/
+			
 		}
 
 
