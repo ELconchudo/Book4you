@@ -12,7 +12,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 */
-
+import java.sql.Date;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -22,10 +22,13 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 import javax.swing.JPanel;
-
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
+import javax.swing.table.DefaultTableModel;
+
 
 public class NuevaReserva extends JFrame implements ActionListener {
 
@@ -106,6 +109,34 @@ public class NuevaReserva extends JFrame implements ActionListener {
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.getContentPane().setLayout(null);
         this.getContentPane().setBackground(new Color(242,242,242));
+
+
+		DefaultTableModel modelo = new DefaultTableModel();
+        modelo.addColumn("Nombre");
+		modelo.addColumn("Dirección");
+        modelo.addColumn("Fecha");
+		modelo.addColumn("Precio");
+        modelo.addColumn("Foto");
+
+       
+		Object[] fila3 = {"Ejemplo", "Calle ejemplo 2", new Date(123, 0, 1), 12 + " Creditos", "ruta_a_foto_ejemplo.jpg"};
+		Object[] fila1 = {"Ejemplo", "Calle ejemplo 542", new Date(123, 0, 1), 14 + " Creditos", "ruta_a_foto_ejemplo.jpg"};
+		Object[] fila2 = {"Ejemplo", "Av. ejemplo 5", new Date(123, 0, 1), 15 + " Creditos", "ruta_a_foto_ejemplo.jpg"};
+        modelo.addRow(fila1);
+        modelo.addRow(fila2);
+		modelo.addRow(fila3);
+
+        // Crear el JTable con el modelo de datos
+        JTable tabla = new JTable(modelo);
+
+        // Agregar el JTable a un JScrollPane para permitir desplazamiento si hay muchas filas
+        JScrollPane scrollPane = new JScrollPane(tabla);
+        scrollPane.setBounds(200, 80, 800, 400);  // Ajusta las coordenadas y dimensiones según tus necesidades
+
+        // Agregar el JScrollPane al contenido de la ventana
+        getContentPane().add(scrollPane);
+
+	
 		
 		Font fuente1 = new Font("Dialog", Font.BOLD ,28);
 		Font fuente2 = new Font("Dialog", Font.BOLD ,16);
