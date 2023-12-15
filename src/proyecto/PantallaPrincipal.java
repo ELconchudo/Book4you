@@ -236,7 +236,7 @@ public class PantallaPrincipal extends JFrame implements ActionListener{
 		monedat = Integer.parseInt(FullUsuario[6]) + Integer.parseInt(monedasc.getText());
 		FullUsuario[6] = Integer.toString(monedat);
 
-		String sql = "UPDATE USUARIOS set CREDITOS = '"+ FullUsuario[6] +"'' where userid = '"+ FullUsuario[0] +"'";
+		String sql = "UPDATE USUARIOS set CREDITOS = '"+ FullUsuario[6] +"' where userid = '"+ FullUsuario[0] +"'";
 		try {
 			Statement st = con.createStatement();
 			ResultSet rs = st.executeQuery(sql);
