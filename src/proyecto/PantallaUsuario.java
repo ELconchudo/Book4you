@@ -18,6 +18,7 @@ import java.sql.SQLException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -301,9 +302,11 @@ public class PantallaUsuario extends JFrame implements ActionListener {
 			
 			try {
 				Connection con = conectarBaseDatos();
-				String query = "UPDATE USUARIOS SET CORREO='"+ correo +"', CONTRASEÑA='"+ contraseña +"', TELEFONO='"+ telefono+"', USUARIO='"+ nombre +"' WHERE DNICIF='" + dni;
-				PreparedStatement actu = con.prepareStatement(query);
-				actu.executeUpdate();
+				String[] FullUsuarioSW  = {FullUsuario[0],FullUsuario[1],nombre,contraseña,correo,telefono,FullUsuario[6]};
+				FullUsuario = FullUsuarioSW;
+				String query = "UPDATE USUARIOS SET CORREO='"+ FullUsuario[4] +"', CONTRASEÑA='"+ FullUsuario[3] +"', TELEFONO='"+ FullUsuario[5]+"', USUARIO='"+ FullUsuario[2] +"' WHERE DNI='" + FullUsuario[1];
+				Statement st = con.createStatement();
+				ResultSet rs = st.executeQuery(query);
 			} catch (Exception e2) {
 				
 				System.out.println(e2);
