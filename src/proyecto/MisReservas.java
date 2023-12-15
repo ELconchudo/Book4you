@@ -57,8 +57,6 @@ public class MisReservas extends JFrame implements ActionListener {
 	ImageIcon menuM =  new ImageIcon("Imagenes/IconoMenu.png");
 	ImageIcon volver =  new ImageIcon("Imagenes/volver.png");
 
-	private String[] sqluser = new String[7];
-
     public MisReservas(String[] sqluser) {
 
 		FullUsuario = sqluser;
@@ -219,19 +217,19 @@ public class MisReservas extends JFrame implements ActionListener {
 			PantallaPrincipal pp = new PantallaPrincipal(FullUsuario);
 			pp.setVisible(true);
 			this.dispose();
-			} else if(e.getSource() == botonMenu2) {
+		} else if(e.getSource() == botonMenu2) {
 				botonMenu.setVisible(true);
 				botonUsuario.setVisible(false);
 				botonReservas.setVisible(false);
-			}else if(e.getSource() == botonUsuario){
+		}else if(e.getSource() == botonUsuario){
 				PantallaUsuario m = new PantallaUsuario(FullUsuario);
 				m.setVisible(true);
 				this.dispose();
-			}else if(e.getSource() == nueva){
-				NuevaReserva m = new NuevaReserva(FullUsuario);
-				m.setVisible(true);
+		}else if(e.getSource() == nueva){
+				NuevaReserva n = new NuevaReserva(FullUsuario);
+				n.setVisible(true);
 				this.dispose();
-			}
+		}
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'actionPerformed'");
     }

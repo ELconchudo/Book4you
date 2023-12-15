@@ -119,7 +119,7 @@ public class NuevaReserva extends JFrame implements ActionListener {
         modelo.addColumn("Foto");
 
        
-		Object[] fila3 = {"Ejemplo", "Calle ejemplo 2", new Date(123, 0, 1), 12 + " Creditos", new ImageIcon(getClass().getResource("/Imagenes/Blackcoin2"))};
+		Object[] fila3 = {"Ejemplo", "Calle ejemplo 2", new Date(123, 0, 1), 12 + " Creditos", "ejemplo.jpg"};
 		Object[] fila1 = {"Ejemplo", "Calle ejemplo 542", new Date(123, 0, 1), 14 + " Creditos", "ruta_a_foto_ejemplo.jpg"};
 		Object[] fila2 = {"Ejemplo", "Av. ejemplo 5", new Date(123, 0, 1), 15 + " Creditos", "ruta_a_foto_ejemplo.jpg"};
         modelo.addRow(fila1);
