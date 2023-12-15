@@ -57,6 +57,7 @@ public class PantallaUsuario extends JFrame implements ActionListener {
 	JTextField correoEditar;
 	JTextField telefonoEditar;
 	JTextField nombreEditar;
+	JTextField contraseñaEditar;
 	String nombreUsuario;
 	int creditos;
 	String[] FullUsuario = new String[7];
@@ -104,15 +105,20 @@ public class PantallaUsuario extends JFrame implements ActionListener {
 		Texto2.setFont (fuente1) ;
 		Texto2.setBounds(525,265,300,20);
 		this.add(Texto2);
+
+		Texto3 = new JLabel("Contraseña: " );
+		Texto3.setFont (fuente1) ;
+		Texto3.setBounds(496,315,300,20);
+		this.add(Texto3);
 		
 		Texto4 = new JLabel("Email: " );
 		Texto4.setFont (fuente1) ;
-		Texto4.setBounds(542,315,300,20);
+		Texto4.setBounds(542,365,300,20);
 		this.add(Texto4);
 		
 		Texto5 = new JLabel("Telefono: " );
 		Texto5.setFont (fuente1) ;
-		Texto5.setBounds(515,365,300,20);
+		Texto5.setBounds(515,415,300,20);
 		this.add(Texto5);
 
 
@@ -121,7 +127,7 @@ public class PantallaUsuario extends JFrame implements ActionListener {
         //--------------------BOTON EDITAR PERFIL------------------\\
 		botonEditar = new JButton("Editar perfil");
 		botonEditar.setFont(fuente2);
-		botonEditar.setBounds(540, 422, 150, 45);
+		botonEditar.setBounds(540, 465, 150, 45);
 	    botonEditar.setBorder(bordeBoton);
 	    botonEditar.addActionListener(this);
 	    botonEditar.setContentAreaFilled(false);
@@ -130,7 +136,7 @@ public class PantallaUsuario extends JFrame implements ActionListener {
 	    
 	    botonGuardar = new JButton("Guardar");
 	    botonGuardar.setFont(fuente2);
-	    botonGuardar.setBounds(540, 422, 150, 45);
+	    botonGuardar.setBounds(540, 465, 150, 45);
 	    botonGuardar.setBorder(bordeBoton);
 	    botonGuardar.addActionListener(this);
 	    botonGuardar.setVisible(false);
@@ -150,16 +156,23 @@ public class PantallaUsuario extends JFrame implements ActionListener {
 	    nombreEditar.setVisible(true);
 	    this.add(nombreEditar);
 	    nombreEditar.getText();
+
+		contraseñaEditar = new JTextField(FullUsuario[3]);
+	    contraseñaEditar.setBounds(600, 310, 150, 30);
+	    contraseñaEditar.setEditable(false);
+	    contraseñaEditar.setVisible(true);
+	    this.add(contraseñaEditar);
+	    contraseñaEditar.getText();
 	    
 	    correoEditar = new JTextField(FullUsuario[4]);
-	    correoEditar.setBounds(600, 310, 150, 30);
+	    correoEditar.setBounds(600, 360, 150, 30);
 	    correoEditar.setEditable(false);
 	    correoEditar.setVisible(true);
 	    this.add(correoEditar);
 	    correoEditar.getText();
 	    
 	    telefonoEditar = new JTextField(FullUsuario[5]);
-	    telefonoEditar.setBounds(600, 360, 150, 30);
+	    telefonoEditar.setBounds(600, 410, 150, 30);
 	    telefonoEditar.setEditable(false);
 	    telefonoEditar.setVisible(true);
 	    this.add(telefonoEditar);
@@ -264,6 +277,7 @@ public class PantallaUsuario extends JFrame implements ActionListener {
 			botonEditar.setVisible(false);
 			correoEditar.setEditable(estaEditando);
 			telefonoEditar.setEditable(estaEditando);
+			contraseñaEditar.setEditable(estaEditando);
 			nombreEditar.setEditable(estaEditando);
 			botonMenu.setVisible(false);	
 		}
@@ -273,6 +287,7 @@ public class PantallaUsuario extends JFrame implements ActionListener {
 			botonEditar.setVisible(true);
 			correoEditar.setEditable(false);
 			telefonoEditar.setEditable(false);
+			contraseñaEditar.setEditable(false);
 			nombreEditar.setEditable(false);
 			botonMenu.setVisible(true);
 			
@@ -280,13 +295,15 @@ public class PantallaUsuario extends JFrame implements ActionListener {
 			String correo = correoEditar.getText();
 			String telefono = telefonoEditar.getText();
 			String nombre = nombreEditar.getText();
+			String contraseña = contraseñaEditar.getText();
 			String dni = cif.getText();
 			
 			
 			try {
-				String query = "UPDATE USUARIOS SET CORREO='"+ correo +"', TELEFONO='"+ telefono+"', USUARIO='"+ nombre +"' WHERE DNICIF='" + dni;
-				//PreparedStatement actu = con.prepareStatement(query);
-				//actu.executeUpdate();
+				Connection con = conectarBaseDatos();
+				String query = "UPDATE USUARIOS SET CORREO='"+ correo +"', CONTRASEÑA='"+ contraseña +"', TELEFONO='"+ telefono+"', USUARIO='"+ nombre +"' WHERE DNICIF='" + dni;
+				PreparedStatement actu = con.prepareStatement(query);
+				actu.executeUpdate();
 			} catch (Exception e2) {
 				
 				System.out.println(e2);
