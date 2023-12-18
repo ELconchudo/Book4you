@@ -119,14 +119,14 @@ public class NuevaReserva extends JFrame implements ActionListener {
         modelo.addColumn("Foto");
 
        
-		Object[] fila3 = {"Ejemplo", "Calle ejemplo 2", new Date(123, 0, 1), 12 + " Creditos", "ejemplo.jpg"};
+		Object[] fila3 = {"Ejemplo", "Calle ejemplo 2", obtenerFechaDesdeChooser(), 12 + " Creditos", "ejemplo.jpg"};
 		Object[] fila1 = {"Ejemplo", "Calle ejemplo 542", new Date(123, 0, 1), 14 + " Creditos", "ruta_a_foto_ejemplo.jpg"};
 		Object[] fila2 = {"Ejemplo", "Av. ejemplo 5", new Date(123, 0, 1), 15 + " Creditos", "ruta_a_foto_ejemplo.jpg"};
         modelo.addRow(fila1);
         modelo.addRow(fila2);
 		modelo.addRow(fila3);
 
-        // Crear el JTable con el modelo de datos
+		 // Crear el JTable con el modelo de datos
         JTable tabla = new JTable(modelo);
 
         // Agregar el JTable a un JScrollPane para permitir desplazamiento si hay muchas filas
@@ -135,6 +135,10 @@ public class NuevaReserva extends JFrame implements ActionListener {
 
         // Agregar el JScrollPane al contenido de la ventana
         getContentPane().add(scrollPane);
+
+		JDateChooser dateChooser = new JDateChooser();
+		dateChooser.setBounds(200, 500, 150, 30);
+		getContentPane().add(dateChooser);
 
 	
 		
@@ -208,6 +212,14 @@ public class NuevaReserva extends JFrame implements ActionListener {
 	  	
 	    this.setVisible(true);
     }
+
+	private Object obtenerFechaDesdeChooser() {
+		Date fecha = null;
+    if (dateChooser.getDate() != null) {
+        fecha = dateChooser.getDate();
+    }
+    return fecha;
+}
 
 
     @Override
