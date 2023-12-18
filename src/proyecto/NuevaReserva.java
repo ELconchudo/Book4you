@@ -140,6 +140,14 @@ public class NuevaReserva extends JFrame implements ActionListener {
 		dateChooser.setBounds(200, 500, 150, 30);
 		getContentPane().add(dateChooser);
 
+		nueva = new JButton("Reservar");
+		nueva.setBounds(300, 500, 190, 30);
+		this.getContentPane().add(nueva);
+		nueva.addActionListener(this);
+		nueva.setForeground(Color.BLACK);
+		nueva.setBackground(new Color(242, 242, 242));
+		nueva.setBorder(new RoundedBorder(22));
+
 	
 		
 		Font fuente1 = new Font("Dialog", Font.BOLD ,28);
