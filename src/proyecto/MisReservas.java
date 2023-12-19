@@ -96,12 +96,7 @@ public class MisReservas extends JFrame implements ActionListener {
         modelo.addColumn("Foto");
 
        
-		Object[] fila3 = {"Ejemplo", "Calle ejemplo 2", obtenerFechaDesdeChooser(), 12 + " Creditos", "ejemplo.jpg"};
-		Object[] fila1 = {"Ejemplo", "Calle ejemplo 542", new Date(123, 0, 1), 14 + " Creditos", "ruta_a_foto_ejemplo.jpg"};
-		Object[] fila2 = {"Ejemplo", "Av. ejemplo 5", new Date(123, 0, 1), 15 + " Creditos", "ruta_a_foto_ejemplo.jpg"};
-        modelo.addRow(fila1);
-        modelo.addRow(fila2);
-		modelo.addRow(fila3);
+		
 
 		 // Crear el JTable con el modelo de datos
         JTable tabla = new JTable(modelo);
@@ -113,10 +108,7 @@ public class MisReservas extends JFrame implements ActionListener {
         // Agregar el JScrollPane al contenido de la ventana
         getContentPane().add(scrollPane);
 
-		JDateChooser dateChooser = new JDateChooser();
-		dateChooser.setBounds(200, 500, 150, 30);
-		getContentPane().add(dateChooser);
-
+		
 		//CREDITOS
 		label1 = new JLabel(creditos + "");
 		label1.setForeground(Color.BLACK);
@@ -222,13 +214,7 @@ public class MisReservas extends JFrame implements ActionListener {
 
     }
 
-    private Object obtenerFechaDesdeChooser() {
-		Date fecha = null;
-    if (dateChooser.getDate() != null) {
-        fecha = dateChooser.getDate();
-    }
-    return fecha;
-}
+    
 
 	@Override
     public void actionPerformed(ActionEvent e) {

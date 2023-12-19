@@ -28,6 +28,8 @@ import javax.swing.JTextField;
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
+import com.toedter.calendar.JDateChooser;
+import com.toedter.calendar.demo.DateChooserPanel;
 
 
 public class NuevaReserva extends JFrame implements ActionListener {
@@ -52,32 +54,13 @@ public class NuevaReserva extends JFrame implements ActionListener {
     JButton cancelar;
     JButton modificar;
 	
-	JTextField textousuario = new JTextField("");
-	JTextField textocontrasena;
-	JTextField textocorreo = new JTextField("");
-	JTextField textotelefono = new JTextField("");
-	JTextField textoCIF = new JTextField("");
-	JTextField textodireccion = new JTextField("");
-	JTextField textoNumeroCuenta = new JTextField("");
-	JTextField textoClaveAcceso = new JTextField("");
-	JTextField textocontrasena2;
 	
 	
 	
-	JLabel usuario;
-	JLabel contrasena;
-	JLabel contrasena2;
-	JLabel repetir;
-	JLabel tituloregistro;
-	JLabel correo;
-	JLabel telefono;
-	JLabel CIF;
-	JLabel direccion;
-	JLabel metodo;
-	JLabel numeroCuenta;
-	JLabel ClaveAcceso;
-	JButton Registrarse;
-	JButton Volver;
+	
+	
+	JDateChooser dateChooser;
+	JTextField campoFecha;
 
     ImageIcon icono =  new ImageIcon("Imagenes/volver.png");
 	ImageIcon menuM =  new ImageIcon("Imagenes/IconoMenu.png");
@@ -115,30 +98,29 @@ public class NuevaReserva extends JFrame implements ActionListener {
         modelo.addColumn("Nombre");
 		modelo.addColumn("Dirección");
         modelo.addColumn("Fecha");
+		modelo.addColumn("Fecha Final");
 		modelo.addColumn("Precio");
         modelo.addColumn("Foto");
 
        
-		Object[] fila3 = {"Ejemplo", "Calle ejemplo 2", obtenerFechaDesdeChooser(), 12 + " Creditos", "ejemplo.jpg"};
-		Object[] fila1 = {"Ejemplo", "Calle ejemplo 542", new Date(123, 0, 1), 14 + " Creditos", "ruta_a_foto_ejemplo.jpg"};
-		Object[] fila2 = {"Ejemplo", "Av. ejemplo 5", new Date(123, 0, 1), 15 + " Creditos", "ruta_a_foto_ejemplo.jpg"};
+		Object[] fila3 = {"Ejemplo", "Calle ejemplo 2",new Date(123, 0, 1),new Date(123, 0, 1), 12 + " Creditos", "ejemplo.jpg"};
+		Object[] fila1 = {"Ejemplo", "Calle ejemplo 542", new Date(123, 0, 1),new Date(123, 0, 1), 14 + " Creditos", "ejemplo.jpg"};
+		Object[] fila2 = {"Ejemplo", "Av. ejemplo 5", new Date(123, 0, 1),new Date(123, 0, 1), 15 + " Creditos", "ejemplo.jpg"};
         modelo.addRow(fila1);
         modelo.addRow(fila2);
 		modelo.addRow(fila3);
 
-		 // Crear el JTable con el modelo de datos
+		 
         JTable tabla = new JTable(modelo);
 
-        // Agregar el JTable a un JScrollPane para permitir desplazamiento si hay muchas filas
+       
         JScrollPane scrollPane = new JScrollPane(tabla);
-        scrollPane.setBounds(200, 80, 800, 400);  // Ajusta las coordenadas y dimensiones según tus necesidades
+        scrollPane.setBounds(200, 80, 800, 400);  
 
-        // Agregar el JScrollPane al contenido de la ventana
+        
         getContentPane().add(scrollPane);
 
-		JDateChooser dateChooser = new JDateChooser();
-		dateChooser.setBounds(200, 500, 150, 30);
-		getContentPane().add(dateChooser);
+		
 
 		nueva = new JButton("Reservar");
 		nueva.setBounds(300, 500, 190, 30);
@@ -221,13 +203,13 @@ public class NuevaReserva extends JFrame implements ActionListener {
 	    this.setVisible(true);
     }
 
-	private Object obtenerFechaDesdeChooser() {
-		Date fecha = null;
-    if (dateChooser.getDate() != null) {
-        fecha = dateChooser.getDate();
+	private java.util.Date obtenerFechaDesdeChooser() {
+        java.util.Date fecha = null;
+        if (dateChooser != null && dateChooser.getDate() != null) {
+            fecha = dateChooser.getDate();
+        }
+        return fecha;
     }
-    return fecha;
-}
 
 
     @Override
