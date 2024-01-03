@@ -115,7 +115,7 @@ public class NuevaReserva extends JFrame implements ActionListener {
 
        
         JScrollPane scrollPane = new JScrollPane(tabla);
-        scrollPane.setBounds(200, 80, 800, 400);  
+        scrollPane.setBounds(220, 140, 800, 400);  
 
         
         getContentPane().add(scrollPane);
@@ -123,7 +123,7 @@ public class NuevaReserva extends JFrame implements ActionListener {
 		
 
 		nueva = new JButton("Reservar");
-		nueva.setBounds(300, 500, 190, 30);
+		nueva.setBounds(520, 570, 190, 30);
 		this.getContentPane().add(nueva);
 		nueva.addActionListener(this);
 		nueva.setForeground(Color.BLACK);

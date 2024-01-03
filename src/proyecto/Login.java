@@ -45,7 +45,7 @@ public class Login extends JFrame implements ActionListener {
 	private String[] sqluser = new String[7];
 	private String[] tsqluser = new String[7];
 	
-public Login() {
+	public Login() {
 		
 		this.setBounds(300, 130, 1080, 700);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -74,7 +74,7 @@ public Login() {
 		this.getContentPane().add(areaUsuario);
 		
 		//CAMPOS CONTRASENYA
-		Contrasena = new JLabel("Contrasena");
+		Contrasena = new JLabel("Contraseña");
 		Contrasena.setFont(font3);
 		Contrasena.setBounds(400, 354, 120, 20);
 		this.getContentPane().add(Contrasena);

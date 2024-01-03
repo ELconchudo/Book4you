@@ -103,7 +103,7 @@ public class MisReservas extends JFrame implements ActionListener {
 
         // Agregar el JTable a un JScrollPane para permitir desplazamiento si hay muchas filas
         JScrollPane scrollPane = new JScrollPane(tabla);
-        scrollPane.setBounds(200, 140, 800, 400);  // Ajusta las coordenadas y dimensiones según tus necesidades
+        scrollPane.setBounds(220, 140, 800, 400);  // Ajusta las coordenadas y dimensiones según tus necesidades
 
         // Agregar el JScrollPane al contenido de la ventana
         getContentPane().add(scrollPane);
