@@ -90,10 +90,10 @@ public class MisReservas extends JFrame implements ActionListener {
 
 		DefaultTableModel modelo = new DefaultTableModel();
         modelo.addColumn("Nombre");
+		modelo.addColumn("Foto");
 		modelo.addColumn("Dirección");
         modelo.addColumn("Fecha");
 		modelo.addColumn("Precio");
-        modelo.addColumn("Foto");
 
        
 		
