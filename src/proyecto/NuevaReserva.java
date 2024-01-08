@@ -6,6 +6,7 @@ import java.awt.Font;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
 /*
 import java.beans.Statement;
 import java.sql.Connection;
@@ -13,6 +14,13 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 */
 import java.sql.Date;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -20,7 +28,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -69,22 +77,34 @@ public class NuevaReserva extends JFrame implements ActionListener {
     String nombreUsuario;
 	int creditos;
 	String[] FullUsuario = new String[7];
-
+	DefaultTableModel modelo = new DefaultTableModel();
+	JTable tabla = new JTable();
 	
-	
+	String[] seleccionVivienda = new String[6];
+	String fechaFormateada;
 	
 	JLabel avisoNombre = new JLabel();
 	JLabel avisoContrasena = new JLabel();
 	JLabel avisoRepetir = new JLabel();
 	JLabel avisoCorreo = new JLabel();
+	Connection con = conectarBaseDatos();
+
+	LocalDate localDate = LocalDate.of(2023, 1, 1); // 1 de enero de 23
+	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+
+
 	
 	private static final String USER = "DW2_2324_BOOK4U_KIA_CO";
 	private static final String PWD = "AKIA_CO";
 	// Si estais desde casa, la url sera oracle.ilerna.com y no 192.168.3.26
-	private static final String URL = "jdbc:oracle:thin:@192.168.3.26:1521:xe";
+	private static final String URL = "jdbc:oracle:thin:@oracle.ilerna.com:1521:xe";
 	
 	
 	public NuevaReserva (String[] sqluser) {
+			// Formatear LocalDate a una cadena
+			fechaFormateada = localDate.format(formatter);
+			System.out.println("Fecha formateada: " + fechaFormateada);
+
 
         FullUsuario = sqluser;
 	
@@ -94,7 +114,7 @@ public class NuevaReserva extends JFrame implements ActionListener {
         this.getContentPane().setBackground(new Color(242,242,242));
 
 
-		DefaultTableModel modelo = new DefaultTableModel();
+		modelo.addColumn("ID");
         modelo.addColumn("Nombre");
 		modelo.addColumn("Dirección");
         modelo.addColumn("Fecha");
@@ -103,15 +123,39 @@ public class NuevaReserva extends JFrame implements ActionListener {
         modelo.addColumn("Foto");
 
        
-		Object[] fila3 = {"Ejemplo", "Calle ejemplo 2",new Date(123, 0, 1),new Date(123, 0, 1), 12 + " Creditos", "ejemplo.jpg"};
-		Object[] fila1 = {"Ejemplo", "Calle ejemplo 542", new Date(123, 0, 1),new Date(123, 0, 1), 14 + " Creditos", "ejemplo.jpg"};
-		Object[] fila2 = {"Ejemplo", "Av. ejemplo 5", new Date(123, 0, 1),new Date(123, 0, 1), 15 + " Creditos", "ejemplo.jpg"};
+		allReservas(con);
+
+		Object[] fila3 = {"5003","Ejemplo", "Calle ejemplo 2",fechaFormateada, fechaFormateada , 12  , "ejemplo.jpg"};
+		Object[] fila1 = {"5002","Ejemplo", "Calle ejemplo 542", fechaFormateada, fechaFormateada, 14  , "ejemplo.jpg"};
+		Object[] fila2 = {"5001","Ejemplo", "Av. ejemplo 5", fechaFormateada, fechaFormateada, 15  , "ejemplo.jpg"};
         modelo.addRow(fila1);
         modelo.addRow(fila2);
 		modelo.addRow(fila3);
-
+		
 		 
-        JTable tabla = new JTable(modelo);
+        tabla = new JTable(modelo);
+
+		tabla.getSelectionModel().addListSelectionListener(e -> {
+			if (!e.getValueIsAdjusting()) { // Para evitar eventos duplicados
+				int filaSeleccionada = tabla.getSelectedRow();
+				int columnaSeleccionada = tabla.getSelectedColumn();
+		
+				if (filaSeleccionada != -1 && columnaSeleccionada != -1) {
+					// Si se ha seleccionado una celda válida
+					Object valorSeleccionado = tabla.getValueAt(filaSeleccionada, columnaSeleccionada);
+					System.out.println("Valor seleccionado: " + valorSeleccionado);
+					for (int i = 0; i < 6; i++) {
+						Object valorSelFor = tabla.getValueAt(filaSeleccionada, i);
+						String valorComoString = (valorSelFor != null) ? valorSelFor.toString() : "null";
+						System.out.println(valorComoString);
+						seleccionVivienda[i] = valorComoString;
+					}
+				} else if (filaSeleccionada != -1) {
+					// Si solo se ha seleccionado una fila completa
+					System.out.println("Fila seleccionada: " + filaSeleccionada);
+				}
+			}
+		});
 
        
         JScrollPane scrollPane = new JScrollPane(tabla);
@@ -211,6 +255,54 @@ public class NuevaReserva extends JFrame implements ActionListener {
         return fecha;
     }
 
+	private static Connection conectarBaseDatos() {
+		Connection con = null;
+        System.out.println("Intentando conectarse a la base de datos");
+        try {
+            Class.forName("oracle.jdbc.driver.OracleDriver");
+            con = DriverManager.getConnection(URL, USER, PWD);
+        } catch (ClassNotFoundException e) {
+            System.out.println("No se ha encontrado el driver " + e);
+        } catch (SQLException e) {
+            System.out.println("Error en las credenciales o en la URL " + e);
+        }
+        System.out.println("Conectados a la base de datos");
+        return con;
+    }
+
+	private void allReservas(Connection con) {
+		String sql = "SELECT v.* FROM VIVIENDA v";
+		try {
+			Statement st = con.createStatement();
+			ResultSet rs = st.executeQuery(sql);
+			if (rs.isBeforeFirst()) {
+				while (rs.next()) {
+					Object[] filasql = {rs.getString("ID_VIVIENDA"), rs.getString("NOMBRE"),rs.getString("LUGAR"), fechaFormateada, fechaFormateada,rs.getInt("PRECIO"), "ejemplo.png"};
+					modelo.addRow(filasql);
+				};
+			} else {
+				System.out.println("No he encontrado nada");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+
+	public void nuevaReserva(){
+		
+		String sql = "INSERT INTO RESERVA(ID_USUARIO, CODIGO_VIVIENDA, PRECIOR, FECHAE, FECHAS)" + 
+		"VALUES('"+ FullUsuario[0] +"', '"+ seleccionVivienda[0] +"','"+ seleccionVivienda[5] +"', '"+ seleccionVivienda[3] +"', '"+ seleccionVivienda[4] +"')";
+		try {
+			Connection con = conectarBaseDatos();
+			java.sql.Statement st = con.createStatement();
+			st.execute(sql);
+		} catch (Exception ex) {
+			System.out.println(ex);
+		}
+	}
+
 
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -233,6 +325,8 @@ public class NuevaReserva extends JFrame implements ActionListener {
 				PantallaUsuario m = new PantallaUsuario(FullUsuario);
 				m.setVisible(true);
 				this.dispose();
+			} else if(e.getSource() == nueva) {
+				nuevaReserva();
 			}
 }
 }
