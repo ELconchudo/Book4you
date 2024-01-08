@@ -86,7 +86,7 @@ public class Registro extends JFrame implements ActionListener {
 		tituloregistro = new JLabel("Inserte sus datos para registrarse");
 		Font font = new Font("Dialog", Font.BOLD ,22);
 		tituloregistro.setFont(font1);
-		tituloregistro.setBounds(300, 100, 480, 30);
+		tituloregistro.setBounds(300, 100, 480, 40);
 		tituloregistro.setForeground(Color.BLACK);
 		this.getContentPane().add(tituloregistro);		
 
@@ -109,7 +109,7 @@ public class Registro extends JFrame implements ActionListener {
 		
 		
 		//CAMPO CONTRASENA
-		contrasena = new JLabel("Contrasena");
+		contrasena = new JLabel("Contraseña");
 		contrasena.setFont(font2);
 		contrasena.setBounds(320, 225, 120, 20);
 		this.getContentPane().add(contrasena);
@@ -127,7 +127,7 @@ public class Registro extends JFrame implements ActionListener {
 		
 		
 		//CAMPO REPETIR CONTRASENA
-		contrasena2 = new JLabel("Repetir contrasena");
+		contrasena2 = new JLabel("Repetir contraseña");
 		contrasena2.setFont(font2);
 		contrasena2.setBounds(320, 275, 180, 20);
 		this.getContentPane().add(contrasena2);
@@ -145,7 +145,7 @@ public class Registro extends JFrame implements ActionListener {
 		
 		
 		//CAMPOS CORREO
-		correo = new JLabel("Correo electronico");
+		correo = new JLabel("Correo electrónico");
 		correo.setFont(font2);
 		correo.setBounds(320, 325, 199, 20);
 		this.getContentPane().add(correo);

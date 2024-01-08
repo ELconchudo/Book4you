@@ -62,21 +62,21 @@ public class Login extends JFrame implements ActionListener {
 		Titulo.setVisible(true);
 		
 		//CAMPOS USUARIOS
-		Usuario = new JLabel("Usuario");
+		Usuario = new JLabel("DNI");
 		Font font1 = new Font("Dialog", Font.PLAIN ,20);
 		Usuario.setFont(font3);
-		Usuario.setBounds(410, 270, 110, 20);
+		Usuario.setBounds(435, 275, 120, 30);
 		Usuario.setForeground(Color.BLACK);
 		this.getContentPane().add(Usuario);
 		
 		areaUsuario.setFont(font1);
-		areaUsuario.setBounds(550, 267, 120, 30);
+		areaUsuario.setBounds(550, 273, 120, 30);
 		this.getContentPane().add(areaUsuario);
 		
 		//CAMPOS CONTRASENYA
 		Contrasena = new JLabel("Contraseña");
 		Contrasena.setFont(font3);
-		Contrasena.setBounds(400, 354, 120, 20);
+		Contrasena.setBounds(400, 354, 120, 30);
 		this.getContentPane().add(Contrasena);
 		Contrasena.setForeground(Color.BLACK);
 		
