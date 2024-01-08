@@ -97,7 +97,7 @@ public class NuevaReserva extends JFrame implements ActionListener {
 	private static final String USER = "DW2_2324_BOOK4U_KIA_CO";
 	private static final String PWD = "AKIA_CO";
 	// Si estais desde casa, la url sera oracle.ilerna.com y no 192.168.3.26
-	private static final String URL = "jdbc:oracle:thin:@oracle.ilerna.com:1521:xe";
+	private static final String URL = "jdbc:oracle:thin:@192.168.3.26:1521:xe";
 	
 	
 	public NuevaReserva (String[] sqluser) {
@@ -292,15 +292,33 @@ public class NuevaReserva extends JFrame implements ActionListener {
 
 	public void nuevaReserva(){
 		
-		String sql = "INSERT INTO RESERVA(ID_USUARIO, CODIGO_VIVIENDA, PRECIOR, FECHAE, FECHAS)" + 
-		"VALUES('"+ FullUsuario[0] +"', '"+ seleccionVivienda[0] +"','"+ seleccionVivienda[5] +"', '"+ seleccionVivienda[3] +"', '"+ seleccionVivienda[4] +"')";
-		try {
-			Connection con = conectarBaseDatos();
-			java.sql.Statement st = con.createStatement();
-			st.execute(sql);
-		} catch (Exception ex) {
-			System.out.println(ex);
+		int rPrecio = Integer.parseInt(FullUsuario[6]) - Integer.parseInt(seleccionVivienda[5]);
+
+		if (rPrecio > 0) {
+			FullUsuario[6] = Integer.toString(rPrecio);
+			String sql2 = "UPDATE USUARIOS SET CREDITOS = " + FullUsuario[6] + " WHERE USERID = " + FullUsuario[0];
+			try {
+				Connection con = conectarBaseDatos();
+				java.sql.Statement st = con.createStatement();
+				st.execute(sql2);
+			} catch (Exception ex) {
+				System.out.println(ex);
+			}
+
+			String sql = "INSERT INTO RESERVA(ID_USUARIO, CODIGO_VIVIENDA, PRECIOR, FECHAE, FECHAS)" + 
+			"VALUES('"+ FullUsuario[0] +"', '"+ seleccionVivienda[0] +"','"+ seleccionVivienda[5] +"', '"+ seleccionVivienda[3] +"', '"+ seleccionVivienda[4] +"')";
+			try {
+				Connection con = conectarBaseDatos();
+				java.sql.Statement st = con.createStatement();
+				st.execute(sql);
+			} catch (Exception ex) {
+				System.out.println(ex);
+			}
+		} else {
+			JOptionPane.showMessageDialog(null, "No tienes suficientes creditos");
 		}
+
+		
 	}
 
 

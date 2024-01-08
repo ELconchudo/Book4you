@@ -41,7 +41,7 @@ public class Login extends JFrame implements ActionListener {
 	private static final String USER = "DW2_2324_BOOK4U_KIA_CO";
 	private static final String PWD = "AKIA_CO";
 	// Si estais desde casa, la url sera oracle.ilerna.com y no 192.168.3.26
-	private static final String URL = "jdbc:oracle:thin:@oracle.ilerna.com:1521:xe";
+	private static final String URL = "jdbc:oracle:thin:@192.168.3.26:1521:xe";
 	private String[] sqluser = new String[7];
 	private String[] tsqluser = new String[7];
 	
