@@ -90,8 +90,6 @@ public class MisReservas extends JFrame implements ActionListener {
 
 		FullUsuario = sqluser;
 
-
-
 		this.creditos = Integer.parseInt(sqluser[6]);
 
         this.setBounds(300, 130, 1080, 700);
@@ -175,7 +173,7 @@ public class MisReservas extends JFrame implements ActionListener {
 
        
         nueva = new JButton("Hacer nueva reserva");
-		nueva.setBounds(300, 570, 190, 30);
+		nueva.setBounds(410, 570, 190, 30);
 		this.getContentPane().add(nueva);
 		nueva.addActionListener(this);
 		nueva.setForeground(Color.BLACK);
@@ -183,20 +181,12 @@ public class MisReservas extends JFrame implements ActionListener {
 		nueva.setBorder(new RoundedBorder(22));
 
         cancelar = new JButton("Cancelar reserva");
-		cancelar.setBounds(530, 570, 170, 30);
+		cancelar.setBounds(660, 570, 170, 30);
 		this.getContentPane().add(cancelar);
 		cancelar.addActionListener(this);
 		cancelar.setForeground(Color.BLACK);
 		cancelar.setBackground(new Color(242, 242, 242));
 		cancelar.setBorder(new RoundedBorder(22));
-
-        modificar = new JButton("Modificar reserva");
-		modificar.setBounds(740, 570, 170, 30);
-		this.getContentPane().add(modificar);
-		modificar.addActionListener(this);
-		modificar.setForeground(Color.BLACK);
-		modificar.setBackground(new Color(242, 242, 242));
-		modificar.setBorder(new RoundedBorder(22));
 
 		//---------------------MENU LATERAL------------------------\\
         Border bordeBoton = new LineBorder(Color.BLACK, 1);

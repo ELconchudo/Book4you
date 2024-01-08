@@ -60,12 +60,7 @@ public class NuevaReserva extends JFrame implements ActionListener {
 	JButton botonVolver;
     JButton nueva;
     JButton cancelar;
-    JButton modificar;
-	
-	
-	
-	
-	
+    JButton modificar;	
 	
 	JDateChooser dateChooser;
 	JTextField campoFecha;
@@ -105,14 +100,12 @@ public class NuevaReserva extends JFrame implements ActionListener {
 			fechaFormateada = localDate.format(formatter);
 			System.out.println("Fecha formateada: " + fechaFormateada);
 
-
         FullUsuario = sqluser;
 	
 		this.setBounds(300, 130, 1080, 700);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.getContentPane().setLayout(null);
         this.getContentPane().setBackground(new Color(242,242,242));
-
 
 		modelo.addColumn("ID");
         modelo.addColumn("Nombre");
@@ -125,9 +118,9 @@ public class NuevaReserva extends JFrame implements ActionListener {
        
 		allReservas(con);
 
-		Object[] fila3 = {"5003","Ejemplo", "Calle ejemplo 2",fechaFormateada, fechaFormateada , 12  , "ejemplo.jpg"};
-		Object[] fila1 = {"5002","Ejemplo", "Calle ejemplo 542", fechaFormateada, fechaFormateada, 14  , "ejemplo.jpg"};
-		Object[] fila2 = {"5001","Ejemplo", "Av. ejemplo 5", fechaFormateada, fechaFormateada, 15  , "ejemplo.jpg"};
+		Object[] fila3 = {"5003","Ejemplo", "Calle ejemplo 2",fechaFormateada, fechaFormateada , 4  , "ejemplo.jpg"};
+		Object[] fila1 = {"5002","Ejemplo", "Calle ejemplo 542", fechaFormateada, fechaFormateada, 6  , "ejemplo.jpg"};
+		Object[] fila2 = {"5001","Ejemplo", "Av. ejemplo 5", fechaFormateada, fechaFormateada, 8  , "ejemplo.jpg"};
         modelo.addRow(fila1);
         modelo.addRow(fila2);
 		modelo.addRow(fila3);
@@ -164,7 +157,6 @@ public class NuevaReserva extends JFrame implements ActionListener {
         
         getContentPane().add(scrollPane);
 
-		
 
 		nueva = new JButton("Reservar");
 		nueva.setBounds(520, 570, 190, 30);
@@ -174,11 +166,32 @@ public class NuevaReserva extends JFrame implements ActionListener {
 		nueva.setBackground(new Color(242, 242, 242));
 		nueva.setBorder(new RoundedBorder(22));
 
-	
 		
 		Font fuente1 = new Font("Dialog", Font.BOLD ,28);
 		Font fuente2 = new Font("Dialog", Font.BOLD ,16);
-		Font fuente3 = new Font("Dialog", Font.PLAIN ,12);
+		Font fuente3 = new Font("Dialog", Font.BOLD, 15);
+		Font fuente4 = new Font("Dialog", Font.BOLD, 47);
+		Font fuente5 = new Font("Dialog", Font.BOLD, 27);
+
+
+		//TITULO
+		titulo = new JLabel("RESERVAS DISPONIBLES");
+		titulo.setFont(fuente4);
+		titulo.setForeground(Color.black);
+		titulo.setBounds(330, 60, 1000, 60);
+		this.getContentPane().add(titulo);
+
+		//CREDITOS
+		label1 = new JLabel(creditos + "");
+		label1.setForeground(Color.BLACK);
+		label1.setFont(fuente5);
+		label1.setBounds(960, 70, 50, 50);
+		label1.setVisible(true);
+		this.add(label1);
+		logo = new JLabel();
+		logo.setIcon(new ImageIcon("Imagenes/BlackCoin.png"));
+		logo.setBounds(980,70,50,50);
+		this.add(logo);
 
         Border bordeBoton = new LineBorder(Color.BLACK, 1);
 	    botonMenu = new JButton();
@@ -219,7 +232,7 @@ public class NuevaReserva extends JFrame implements ActionListener {
 
         botonUsuario = new JButton("USUARIO");
 	    botonUsuario.setBounds(15, 80, 145, 45);
-	    botonUsuario.setFont(fuente1);
+	    botonUsuario.setFont(fuente3);
 	    botonUsuario.setBorder(bordeBoton);
 	    botonUsuario.addActionListener(this);
 	    botonUsuario.setVisible(false);
@@ -229,7 +242,7 @@ public class NuevaReserva extends JFrame implements ActionListener {
 	    
 	    botonReservas = new JButton("RESERVAS");
 	    botonReservas.setBounds(15, 135, 145, 45);
-	    botonReservas.setFont(fuente1);
+	    botonReservas.setFont(fuente3);
 	    botonReservas.setBorder(bordeBoton);
 	    botonReservas.addActionListener(this);
 	    botonReservas.setVisible(false);
