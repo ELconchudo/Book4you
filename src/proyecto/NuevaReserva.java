@@ -182,7 +182,7 @@ public class NuevaReserva extends JFrame implements ActionListener {
 		this.getContentPane().add(titulo);
 
 		//CREDITOS
-		label1 = new JLabel(creditos + "");
+		label1 = new JLabel(FullUsuario[6]);
 		label1.setForeground(Color.BLACK);
 		label1.setFont(fuente5);
 		label1.setBounds(960, 70, 50, 50);
@@ -356,8 +356,16 @@ public class NuevaReserva extends JFrame implements ActionListener {
 				PantallaUsuario m = new PantallaUsuario(FullUsuario);
 				m.setVisible(true);
 				this.dispose();
+			}
+			else if (e.getSource() == botonReservas) {
+				MisReservas m = new MisReservas(FullUsuario);
+				m.setVisible(true);
+				this.dispose();
 			} else if(e.getSource() == nueva) {
 				nuevaReserva();
+				MisReservas m = new MisReservas(FullUsuario);
+				m.setVisible(true);
+				this.dispose();
 			}
 }
 }
