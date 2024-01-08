@@ -78,24 +78,23 @@ public class MisReservas extends JFrame implements ActionListener {
 
         Font fuente1 = new Font("Dialog", Font.PLAIN, 14);
 		Font fuente2 = new Font("Dialog", Font.PLAIN, 20);
-		Font fuente3 = new Font("Dialog", Font.BOLD, 50);
+		Font fuente3 = new Font("Dialog", Font.BOLD, 47);
 		Font fuente4 = new Font("Dialog", Font.BOLD, 27);
 		Font fuente5 = new Font("Dialog", Font.BOLD, 15);
 		
-		titulo = new JLabel("Mis reservas");
+		titulo = new JLabel("MIS RESERVAS");
 		titulo.setFont(fuente3);
 		titulo.setForeground(Color.black);
 		titulo.setBounds(450, 60, 1000, 60);
 		this.getContentPane().add(titulo);
 
 		DefaultTableModel modelo = new DefaultTableModel();
-        modelo.addColumn("Nombre");
-		modelo.addColumn("Foto");
+        modelo.addColumn("Foto");
+		modelo.addColumn("Nombre");
 		modelo.addColumn("Dirección");
         modelo.addColumn("Fecha");
 		modelo.addColumn("Precio");
 
-       
 		
 
 		 // Crear el JTable con el modelo de datos
